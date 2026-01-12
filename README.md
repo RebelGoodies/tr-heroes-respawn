@@ -8,35 +8,27 @@ For those who love heroes!
 
 ### About
 
-- Most heroes under **50 population** (including AI) respawn on a **15 week timer** when "killed" while keeping era progression intact.
-- This is intended for weaker heroes that die frequently and can be disabled mid-campaign via `GameConstants.xml`.
+- Depending on the strength of the hero, most heroes will respawn in around **7 to 30 cycles** when "killed" (including AI).
+- This can be toggled on and off at any time through buttons in the *Advanced Options* tab (Human and AI can be toggled separately).
+- Subsequent deaths by the same hero will increase their respawn time by **10%** each time.
 - Any special respawns remain unchanged.
 
 ### Exceptions to respawn
 
-- All heroes over **49 population** will not respawn for balancing and player sanity.
-- Some Imperial heroes do not respawn for story purposes.
+- Super Star Destroyer (SSD) heroes are excluded.
 - If a warlord faction gets integrated, their heroes not alive at that moment are gone.
+- Some heroes do not respawn when progressing through imperial regimes (this can be toggled in the Advanced Options tab).
 
 ### Recruitable heroes
 
-New Republic recruitable commanders (under 50 pop) get added back to the list some time after their death so you can recruit them again.
-For example, if Admiral Ackbar dies in his smaller 33 pop ship, you can recruit him again.
-If he dies in his 58 pop Home One, he is gone for good.
-(This feature is not affected by `GameConstants.xml`.)
+- Imperial players may recruit multiple bounty hunters instead of only one.
+- New Republic recruitable commanders follow the same respawn rules.
+  When one of these heroes is defeated, their slot is effectively suspended until they respawn.
+- Extra New Republic slots can be purchased for **200 credits** as many times as you want (use the blue rebel button).
 
 ### One Planet Start
 
 Heroes spawn at the beginning of FTGU single-planet start games, matching the selected era.
-
-### How to edit GameConstants
-
-How to edit the time for a respawn:
-
-1. Go to: `Data/XML`
-2. Open `GameConstants.xml`
-3. Find the line 417: `<Default_Hero_Respawn_Time>600.0</Default_Hero_Respawn_Time>`
-4. You can set it to a negative number to deactivate it between saved games.
 
 # License
 
