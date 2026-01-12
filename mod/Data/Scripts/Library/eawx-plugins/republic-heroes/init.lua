@@ -10,49 +10,23 @@
 --*                                   |_____|                                                      *
 --*                                                                                                *
 --*                                                                                                *
---*       File:              InstalledPlugins.lua                                                  *
---*       File Created:      Saturday, 22nd February 2020 05:27                                    *
---*       Author:            [TR] Pox                                                              *
---*       Last Modified:     Monday, 24th February 2020 01:38                                      *
---*       Modified By:       [TR] Pox                                                              *
+--*       File:              init.lua                                                              *
+--*       File Created:      Monday, 24th February 2020 02:16                                      *
+--*       Author:            [TR] Kiwi                                                             *
+--*       Last Modified:     Monday, 24th February 2020 03:57                                      *
+--*       Modified By:       [TR] Kiwi                                                             *
 --*       Copyright:         Thrawns Revenge Development Team                                      *
 --*       License:           This code may not be used without the author's explicit permission    *
 --**************************************************************************************************
 
+require("deepcore/std/plugintargets")
+require("eawx-plugins/republic-heroes/RepublicHeroes")
+
 return {
-    -- "timed-dummy-lifecycle-handler",
-    "key-dummy-lifecycle-handler",
-    "ui/category-filter",
-    "ui/galactic-display",
-    "ui/government-update",
-    "ui/abstract-resource-update",
-    "galactic-events-news",
-    "abstract-resources",
-    "selected-planet-listener",
-    "invading-fleet-listener",
-    "year-handler",
-    "influence-service",
-    "icw-governments",
-    "boarding-listener",
-	--"production-listener"
-    "resource-manager",
-    "revolt-manager",
-    "blockade-attrition",
-	"respawn-handler",
-    "bounty-hunters",
-	"warlord-respawn",
-    "statemachine-main",
-    "options-handler",
-    "random-spawn-manager",
-    "event-handler",
-    "statemachine-tech",
-    "statemachine-regime",
-    "orbital-structure-handler",
-    "tech-handler",
-	"republic-heroes",
-    "persistent-units",
-    "ui/stats-display",
-    "trade-port-handler",
-    "victory-handler",
-    "world-devastator-handler"
+    target = PluginTargets.never(),
+    init = function(self, ctx)
+        local galactic_conquest = ctx.galactic_conquest
+        return RepublicHeroes(galactic_conquest, galactic_conquest.Events.GalacticHeroKilled, galactic_conquest.HumanPlayer)
+    end
 }
+ 

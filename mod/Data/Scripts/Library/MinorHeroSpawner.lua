@@ -38,7 +38,7 @@ function CadetLoop(args)
 		return
 	end
 	if initial_call then
-		timervalue = 400
+		timervalue = 840
 	else
 		local academy_planet = Academy.Get_Planet_Location()
 		local academy_owner = Academy.Get_Owner()
@@ -53,7 +53,7 @@ function CadetLoop(args)
 		local land_IV_chance
 
 		if influence_level == 10 then
-			timervalue = 600
+			timervalue = 500
 			space_V_chance = 40
 			space_IV_chance = 40
 			land_IV_chance = 50
@@ -91,13 +91,10 @@ function CadetLoop(args)
 			influence_level = 0 --Don't bother producing any below this if the planet dislikes you that much
 			timervalue = 880
 		end
-		
-		timervalue = timervalue - (influence_level * 40)
 			
 		if influence_level > 0 then
 			if academy_owner.Is_Human() then
-				StoryUtil.ShowScreenText("TEXT_COMMANDER_SPAWN_PLANET", 10, academy_planet, {r = 0, g = 200, b = 0})
-				StoryUtil.ShowScreenText("Another commander will arrive in about " .. tostring(timervalue/40) .. " cycles.", 10)
+				StoryUtil.ShowScreenText("A commander has spawned at "..academy_planet.Get_Type().Get_Name(), 5)
 			end
 			local commanders
 			local tier_chance
