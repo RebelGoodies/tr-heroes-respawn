@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<Story_Mode_Plots>
+	<Lua_Script>GCPlayerAgnosticDeepCore</Lua_Script>
+	<Active_Plot>Conquests\Player_Agnostic_Plot.xml</Active_Plot>
+	
+	<Active_Plot>Conquests\DeepCore\Story_Sandbox_Core_Empire.XML</Active_Plot>
+
+	<Active_Plot>Conquests\Story_Sandbox_Raids.xml</Active_Plot>
+	<Suspended_Plot>Conquests\Tactical_Raids.xml</Suspended_Plot>
+		
+		<Active_Plot>Conquests\Factional_Buildable_EMPIRE.xml</Active_Plot>
+
+		
+		
+</Story_Mode_Plots>
