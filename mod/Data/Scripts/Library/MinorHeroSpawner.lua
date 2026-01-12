@@ -38,7 +38,7 @@ function CadetLoop(args)
 		return
 	end
 	if initial_call then
-		timervalue = 840
+		timervalue = 400
 	else
 		local academy_planet = Academy.Get_Planet_Location()
 		local academy_owner = Academy.Get_Owner()
@@ -53,7 +53,7 @@ function CadetLoop(args)
 		local land_IV_chance
 
 		if influence_level == 10 then
-			timervalue = 500
+			timervalue = 600
 			space_V_chance = 40
 			space_IV_chance = 40
 			land_IV_chance = 50
@@ -91,10 +91,13 @@ function CadetLoop(args)
 			influence_level = 0 --Don't bother producing any below this if the planet dislikes you that much
 			timervalue = 880
 		end
+		
+		timervalue = timervalue - (influence_level * 40)
 			
 		if influence_level > 0 then
 			if academy_owner.Is_Human() then
-				StoryUtil.ShowScreenText("A commander has spawned at "..academy_planet.Get_Type().Get_Name(), 5)
+				StoryUtil.ShowScreenText("A commander has spawned at "..academy_planet.Get_Type().Get_Name(), 5, nil, {r = 0, g = 200, b = 0})
+				StoryUtil.ShowScreenText("Another commander will arrive in about " .. tostring(timervalue/40) .. " cycles.", 10)
 			end
 			local commanders
 			local tier_chance
@@ -128,9 +131,9 @@ end
 
 function select_option(option_array, owner)
 	while true do
-		option_index = GameRandom(1, table.getn(option_array))
+		local option_index = GameRandom(1, table.getn(option_array))
 		if type(option_array[option_index]) == "table" then
-			condition_array = option_array[option_index]
+			local condition_array = option_array[option_index]
 			local match_condition = false
 			if type(condition_array[2]) == "number" then
 				local techLevel = GlobalValue.Get("CURRENT_ERA")

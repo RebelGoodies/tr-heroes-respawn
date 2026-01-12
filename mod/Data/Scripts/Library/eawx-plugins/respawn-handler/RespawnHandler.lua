@@ -1,47 +1,94 @@
 require("deepcore/std/class")
 require("eawx-util/StoryUtil")
+require("eawx-util/UnitUtil")
 require("deepcore/crossplot/crossplot")
 require("PGStoryMode")
 require("HeroUtil")
 require("HeroSystem")
-require("eawx-events/TerrikUpgrade")
 
 CONSTANTS = ModContentLoader.get("GameConstants")
 
 RespawnHandler = class()
 
+---@param gc GalacticConquest
+---@param id string
 function RespawnHandler:new(gc, id)
 	self.gc = gc
 	self.id = id
 	self.human_player = gc.HumanPlayer
 	
-	if id == "PROGRESSIVE" then
-		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_REGIME_NO_DESPAWN"))
-	elseif id == "FTGU" then
-		self.VentureUpgrade = VentureUpgrade(self.gc)
-	end
-	
 	self.inited = false
 	self.squadrons_inited = false
 	self.human_respawn = true
 	self.ai_respawn = true
+	self.time_override = nil --debug
+
+	---@type PlayerObject|nil
+	self.isard_ssd_owner = nil
 	
-	self.deaths = {} --track number of deaths,   --["HERO_ID"] = 7
-	self.squadrons = require("HeroSquadronList") --["FACTION"] = {["squadron_name"] = {"hero_fighter", {"exclude_if_alive"}, was_alive, has_died}}
-	self.respawning_list = {} --["FACTION"] = {["HERO_ID"] = true/false}
-	self.omit_list = {}       --["FACTION"] = {["HERO_ID"] = true/false}
+	---track number of deaths, ["HERO_ID"] = 7
+	---@type table<string, integer>
+	self.deaths = {}
+
+	---["FACTION"] = {["HERO_ID"] = true/false}
+	---@type table<string, table<string, boolean>>
+	self.respawning_list = {}
+
+	---["FACTION"] = {["HERO_ID"] = true/false}
+	---@type table<string, table<string, boolean>>
+	self.omit_list = {}       
+
+	---["FACTION"] = {["squadron_name"] = {"hero_fighter", {"exclude_if_alive"}, was_alive, has_died}}
+	---@type table<string, table<string, string|string[]|boolean>>
+	self.squadrons = {}
 	
 	--Format tables to have all factions. Prevents crashes from faction not being there.
-	for _, faction in pairs (CONSTANTS.ALL_FACTIONS) do
+	---@type string[]
+	local all_factions = CONSTANTS.ALL_FACTIONS
+	for _, faction in pairs (all_factions) do
 		self.respawning_list[faction] = {}
 		self.omit_list[faction] = {}
+		self.squadrons[faction] = require("HeroSquadronList")
 	end
 	
 	--Fill omit_list
-	for faction, hero_list in pairs(require("HeroOneLifeList")) do
-		for _, hero_id in pairs(hero_list) do
-			self.omit_list[faction][string.upper(hero_id)] = true
+	---@type table<string, string[]>
+	local exceptions = require("RespawnExceptions")
+	if exceptions then
+		for faction, hero_list in pairs(exceptions) do
+			for _, hero_id in pairs(hero_list) do
+				self.omit_list[faction][string.upper(hero_id)] = true
+			end
 		end
+	end
+	
+	self:add_to_omit("DELVARDUS_THALASSA", "ERIADU_AUTHORITY")
+	self:add_to_omit("TREUTEN_13X", "GREATER_MALDROOD")
+	self:add_to_omit("TYBER_ZANN_TEAM", "ZSINJ_EMPIRE")
+	
+	---@type table<string, table<string, table<string, string|boolean>>>
+	self.regime_sets = require("eawx-mod-icw/spawn-sets/EmpireProgressSet")
+	
+	crossplot:subscribe("INITIALIZE_AI", self.init, self)
+	-- crossplot:subscribe("OMIT_RESPAWN_BULK", self.bulk_add_to_omit, self)
+	-- crossplot:subscribe("OMIT_RESPAWN", self.add_to_omit, self)
+	-- crossplot:subscribe("ALLOW_RESPAWN", self.remove_from_omit, self)
+	
+	gc.Events.GalacticProductionFinished:attach_listener(self.on_construction_finished, self)
+	gc.Events.GalacticHeroKilled:attach_listener(self.on_galactic_hero_killed, self)
+	gc.Events.PlanetOwnerChanged:attach_listener(self.on_planet_owner_changed, self)
+	gc.Events.TacticalBattleEnded:attach_listener(self.on_battle_end, self)
+
+	--Replace buildable
+	UnitUtil.SetLockList("ZSINJ_EMPIRE", {"Random_Pirate_Fighter", "Random_Pirate_Hero", "Random_Pirate_Legend", "Random_Pirate_Fleet"}, false)
+	UnitUtil.SetLockList("ZSINJ_EMPIRE", {"Random_Pirate_Fighter_2", "Random_Pirate_Hero_2", "Random_Pirate_Legend_2", "Random_Pirate_Fleet_2"})
+	UnitUtil.SetLockList("HUTT_CARTELS", {"Random_Pirate_Fighter", "Random_Pirate_Hero", "Random_Pirate_Legend", "Random_Pirate_Fleet"}, false)
+	UnitUtil.SetLockList("HUTT_CARTELS", {"Random_Pirate_Fighter_2", "Random_Pirate_Hero_2", "Random_Pirate_Legend_2", "Random_Pirate_Fleet_2"})
+end
+
+function RespawnHandler:init()
+	if self.inited then
+		return
 	end
 	
 	if Find_Object_Type("OPTION_RESPAWN_OFF") then
@@ -56,45 +103,21 @@ function RespawnHandler:new(gc, id)
 			self.human_player.Unlock_Tech(Find_Object_Type("OPTION_AI_RESPAWN_ON"))
 		end
 		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
+		--if self.id == "PROGRESSIVE" then
+		--	self.human_player.Unlock_Tech(Find_Object_Type("OPTION_REGIME_NO_DESPAWN"))
+		--end
 	end
 	
-	self.regime_leaders = {
-		{"Pestage_Team"},
-		{"Hissa_Moffship", "Ysanne_Isard_Team", "Lusankya"},
-		{"Chimera"},
-		{"Emperor_Palpatine_Team", "Dark_Empire_Cloning_Facility"},
-		{"Carnor_Jax_Team"},
-		{"Gorgon", "Daala_Knight_Hammer"},
-	}
-	
-	crossplot:subscribe("INITIALIZE_AI", self.init, self)
-	crossplot:subscribe("OMIT_RESPAWN_BULK", self.bulk_add_to_omit, self)
-	crossplot:subscribe("OMIT_RESPAWN", self.add_to_omit, self)
-	crossplot:subscribe("ALLOW_RESPAWN", self.remove_from_omit, self)
-	
-	gc.Events.GalacticProductionFinished:attach_listener(self.on_construction_finished, self)
-	gc.Events.GalacticHeroKilled:attach_listener(self.on_galactic_hero_killed, self)
-	gc.Events.PlanetOwnerChanged:attach_listener(self.on_planet_owner_changed, self)
-	gc.Events.TacticalBattleEnded:attach_listener(self.on_battle_end, self)
-
-end
-
-function RespawnHandler:init()
-	if self.inited then
-		return
+	if self.id == "PROGRESSIVE" then
+		self:regime_check()
 	end
-	
-	if self.id == "FTGU" then
-		crossplot:publish("NR_ADMIRAL_DECREMENT", -10, 1)
-		crossplot:publish("NR_ADMIRAL_DECREMENT", -10, 2)
-	end
-	crossplot:publish("NR_ADMIRAL_DECREMENT", -2, 2) --Jedi
 	
 	self:squadron_check()
-	self:regime_leader_trigger()
 end
 
--- Check every cycle
+---DEPRECATED
+---Check every cycle
+---@param args any
 function squadron_loop(args)
 	--Logger:trace("entering RespawnHandler:squadron_loop")
 	local handler = args[1]
@@ -105,7 +128,8 @@ function squadron_loop(args)
 	Register_Timer(squadron_loop, 40, {handler})
 end
 
--- Since fighter hero deaths are not detected by on_galactic_hero_killed.
+---With the new 3.4 fighter system, this is not needed, except for Han and Chewie.
+---Fighter hero deaths are not detected by on_galactic_hero_killed.
 function RespawnHandler:squadron_check()
 	--Logger:trace("entering RespawnHandler:squadron_check")
 	for faction, squadron_list in pairs(self.squadrons) do
@@ -118,13 +142,14 @@ function RespawnHandler:squadron_check()
 					end
 					info[3] = false
 					info[4] = false
-					Register_Timer(squadron_loop, 36, {self})
+					--Register_Timer(squadron_loop, 36, {self})
 				end
 				local hero_fighter = info[1]
+				local hero_object = Find_First_Object(hero_fighter)
 				local exclude_if_alive = info[2]
 				local was_alive = info[3]
 				local has_died = info[4]
-				local is_alive = TestValid(Find_First_Object(hero_fighter))
+				local is_alive = TestValid(hero_object)
 				
 				if is_alive then
 					info[4] = false
@@ -132,16 +157,22 @@ function RespawnHandler:squadron_check()
 					info[4] = true
 					self:on_galactic_hero_killed(string.upper(squadron), faction, nil, exclude_if_alive)
 				end
-				info[3] = is_alive
+				if hero_object and hero_object.Get_Owner() == Find_Player(faction) then
+					info[3] = is_alive
+				end
 			end
 		end
 	end
 end
 
+---@param planet Planet
+---@param new_owner string
+---@param old_owner string
 function RespawnHandler:on_planet_owner_changed(planet, new_owner, old_owner)
 	self:squadron_check()
 end
 
+---@param mode_name string
 function RespawnHandler:on_battle_end(mode_name)
 	--Logger:trace("entering RespawnHandler:on_battle_end "..mode_name)
 	local han = Find_First_Object("Han_Solo")
@@ -161,16 +192,157 @@ function RespawnHandler:on_battle_end(mode_name)
 	self:squadron_check()
 end
 
+---@param owner string
+---@return boolean enabled true if respawn is active for this faction
+function RespawnHandler:respawn_status_check(owner)
+	local is_human = Find_Player(owner).Is_Human()
+	if (is_human and self.human_respawn) or (not is_human and self.ai_respawn) then
+		return true
+	else
+		return false
+	end
+end
+
+---@param hero_name string
+---@param owner string
+---@param killer_name string
+---@param exclude_if_alive string[]
+function RespawnHandler:on_galactic_hero_killed(hero_name, owner, killer_name, exclude_if_alive)
+	if hero_name == "Isard_Lusankya" then
+		self.isard_ssd_owner = nil
+	end
+	--Logger:trace("entering RespawnHandler:on_galactic_hero_killed "..hero_name.." for "..owner)
+	if self:respawn_status_check(owner) and not self.respawning_list[owner][hero_name] then --Second check really only needed for "Han_Solo_Team"
+		local multiplier = self:calc_multiplier(hero_name)
+		local cycle_time = self.time_override or get_cycle_time(hero_name, owner) * multiplier
+		
+		if cycle_time > 0 and not self.omit_list[owner][hero_name] then
+			if not in_list_is_alive(exclude_if_alive) then
+				Register_Timer(try_respawn, cycle_time*40, {hero_name, owner, self, exclude_if_alive})
+				self.respawning_list[owner][hero_name] = true
+				if Find_Player(owner).Is_Human() then
+					StoryUtil.ShowScreenText("%s will respawn in about " .. tostring(Dirty_Floor(cycle_time+0.5)) .. " cycles.", 20, hero_name, {r = 244, g = 244, b = 0})
+				else
+					StoryUtil.ShowScreenText("%s will respawn in about " .. tostring(Dirty_Floor(cycle_time+0.5)) .. " cycles.", 15, hero_name, {r = 244, g = 160, b = 0})
+				end
+			end
+		else
+			StoryUtil.ShowScreenText("%s will not respawn.", 10, hero_name, {r = 244, g = 200, b = 0})
+		end
+	end
+end
+
+---Increase respawn time by 10% each death
+---@param hero_name string
+---@return number multiplier percentage applied to the default respawn time
+function RespawnHandler:calc_multiplier(hero_name)
+	--Logger:trace("entering RespawnHandler:calc_multiplier")
+	local percent_increase = 0.1 --10%
+	if not self.deaths[hero_name] then
+		self.deaths[hero_name] = 1
+	else
+		self.deaths[hero_name] = self.deaths[hero_name] + 1
+	end
+	return 1 + (percent_increase * (self.deaths[hero_name] - 1))
+end
+
+---@param args any
+function try_respawn(args)
+	local hero_name = args[1]
+	local owner = args[2]
+	--Logger:trace("entering RespawnHandler:try_respawn "..hero_name.." for "..owner)
+	local handler = args[3]
+	local exclude_if_alive = args[4]
+	if handler:respawn_status_check(owner) then
+		if not handler.omit_list[owner][hero_name] then
+			if not in_list_is_alive(exclude_if_alive) then
+				respawn_hero(warlord_check(hero_name, owner), owner)
+				handler.respawning_list[owner][hero_name] = false
+			end
+		else
+			StoryUtil.ShowScreenText("%s will not return.", 10, hero_name, {r = 244, g = 200, b = 0})
+		end
+	end
+end
+
+---@param object_type_name string
+---@return integer
+function RespawnHandler:check_available_staff(object_type_name)
+	local views = {
+		["VIEW_ADMIRALS"] = 1,
+		["VIEW_GENERALS"] = 2,
+		["VIEW_COUNCIL"] = 3
+	}
+	local set = views[object_type_name]
+	if set and self.locked_increase then
+		local systems = {admiral_data, general_data, council_data}
+		local hero_data = systems[set]
+		if hero_data then
+			if table.getn(hero_data.available_list) > hero_data.free_hero_slots then
+				self.human_player.Unlock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
+				self.locked_increase = false
+			end
+		end
+	end
+	return set
+end
+
+---@param set integer
+---@param amount integer
+---@return boolean
+function RespawnHandler:rep_staff_increase(set, amount)
+	if not amount then
+		amount = 1
+	end
+	
+	local systems = {admiral_data, general_data, council_data}
+	local names = {"Admiral", "General", "Jedi"}
+	local hero_data = systems[set]
+	
+	if hero_data then
+		if table.getn(hero_data.available_list) > hero_data.free_hero_slots then
+			StoryUtil.ShowScreenText("Total "..tostring(names[set]).." Slots: "..hero_data.total_slots+1, 3, nil, {r = 88, g = 222, b = 44})
+			crossplot:publish("NR_ADMIRAL_DECREMENT", -amount, set)
+			Lock_Hero_Options(hero_data)
+			Unlock_Hero_Options(hero_data)
+			Get_Active_Heroes(false, hero_data)
+		else
+			StoryUtil.ShowScreenText("Total "..tostring(names[set]).." Slots: "..hero_data.total_slots, 3, nil, {r = 66, g = 190, b = 33})
+			return true
+		end
+	else
+		crossplot:publish("NR_ADMIRAL_DECREMENT", -amount, set)
+	end
+	return false
+end
+
+---@param planet Planet
+---@param object_type_name string
 function RespawnHandler:on_construction_finished(planet, object_type_name)
 	--Logger:trace("entering RespawnHandler:on_construction_finished")
+	if object_type_name == "ISARDUPGRADE" then
+		self.isard_ssd_owner = planet:get_owner()
+		return
+	elseif self.isard_ssd_owner and not TestValid(Find_First_Object("Isard_Lusankya")) then
+		StoryUtil.SpawnAtSafePlanet("KUAT", self.isard_ssd_owner, StoryUtil.GetSafePlanetTable(), {"Isard_Lusankya"})
+		self.isard_ssd_owner = nil
+		return
+	end
+
 	if object_type_name == "OPTION_INCREASE_REP_STAFF" then
-		crossplot:publish("NR_ADMIRAL_DECREMENT", -1, 1)
-		if admiral_data and admiral_data.total_slots then
-			StoryUtil.ShowScreenText("Total admiral slots: "..admiral_data.total_slots+1, 5, nil, {r = 88, g = 222, b = 44})
-			Lock_Hero_Options(admiral_data)
-			Unlock_Hero_Options(admiral_data)
-			Get_Active_Heroes(false, admiral_data)
+		local slots_done = true
+		for i = 1, 3 do
+			if not self:rep_staff_increase(i) then
+				slots_done = false
+			end
 		end
+		if slots_done then
+			self.human_player.Lock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
+			self.locked_increase = true
+		end
+		
+	elseif self:check_available_staff(object_type_name) then
+		return
 	
 	elseif object_type_name == "OPTION_RESPAWN_ON" then
 		self.human_respawn = true
@@ -201,74 +373,22 @@ function RespawnHandler:on_construction_finished(planet, object_type_name)
 		self.human_player.Lock_Tech(Find_Object_Type("OPTION_REGIME_NO_DESPAWN"))
 		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_REGIME_YES_DESPAWN"))
 		StoryUtil.ShowScreenText("Regime hero removal DISABLED", 6, nil, {r = 244, g = 180, b = 44})
-		self:regime_leader_trigger()
+		--self:regime_check()
 	
 	elseif object_type_name == "OPTION_REGIME_YES_DESPAWN" then
 		GlobalValue.Set("REGIME_DESPAWN", true)
 		self.human_player.Lock_Tech(Find_Object_Type("OPTION_REGIME_YES_DESPAWN"))
 		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_REGIME_NO_DESPAWN"))
 		StoryUtil.ShowScreenText("Regime hero removal ENABLED", 6, nil, {r = 160, g = 244, b = 44})
-		self:regime_leader_trigger()
+		--self:regime_check()
+	
+	elseif object_type_name == "OPTION_FAST_RESPAWN" then
+		self.time_override = 1
 	end
 end
 
-function RespawnHandler:respawn_status_check(owner)
-	local is_human = Find_Player(owner).Is_Human()
-	if (is_human and self.human_respawn) or (not is_human and self.ai_respawn) then
-		return true
-	else
-		return false
-	end
-end
-
-function RespawnHandler:on_galactic_hero_killed(hero_name, owner, killer_name, exclude_if_alive)
-	--Logger:trace("entering RespawnHandler:on_galactic_hero_killed "..hero_name.." for "..owner)
-	if self:respawn_status_check(owner) and not self.respawning_list[owner][hero_name] then --Second check really only needed for "Han_Solo_Team"
-		local multiplier = self:calc_multiplier(hero_name)
-		local cycle_time = get_cycle_time(hero_name, owner) * multiplier
-		
-		if cycle_time > 0 and cycle_time <= 40 and not self.omit_list[owner][hero_name] and not in_list_is_alive(exclude_if_alive) then
-			Register_Timer(try_respawn, cycle_time*40, {hero_name, owner, self, exclude_if_alive})
-			self.respawning_list[owner][hero_name] = true
-			if Find_Player(owner).Is_Human() then
-				StoryUtil.ShowScreenText("%s will respawn in about " .. tostring(Dirty_Floor(cycle_time+0.5)) .. " cycles.", 15, hero_name, {r = 244, g = 244, b = 0})
-			end
-		else
-			StoryUtil.ShowScreenText("%s will not respawn.", 10, hero_name, {r = 244, g = 200, b = 0})
-		end
-	end
-end
-
---Increase by 10% each death 
-function RespawnHandler:calc_multiplier(hero_name)
-	--Logger:trace("entering RespawnHandler:calc_multiplier")
-	local percent_increase = 0.1 --10%
-	if not self.deaths[hero_name] then
-		self.deaths[hero_name] = 1
-	else
-		self.deaths[hero_name] = self.deaths[hero_name] + 1
-	end
-	return 1 + (percent_increase * (self.deaths[hero_name] - 1))
-end
-
-function try_respawn(args)
-	local hero_name = args[1]
-	local owner = args[2]
-	--Logger:trace("entering RespawnHandler:try_respawn "..hero_name.." for "..owner)
-	local handler = args[3]
-	local exclude_if_alive = args[4]
-	if handler:respawn_status_check(owner) then
-		if not handler.omit_list[owner][hero_name] then
-			if not in_list_is_alive(exclude_if_alive) then
-				respawn_hero(warlord_check(hero_name, owner), owner)
-				handler.respawning_list[owner][hero_name] = false
-			end
-		else
-			StoryUtil.ShowScreenText("%s will not return.", 10, hero_name, {r = 244, g = 200, b = 0})
-		end
-	end
-end
-
+---@param faction string
+---@param hero_list string[]
 function RespawnHandler:bulk_add_to_omit(faction, hero_list)
 	--Logger:trace("entering RespawnHandler:bulk_add_to_omit")
 	for _, hero_name in pairs(hero_list) do
@@ -276,6 +396,8 @@ function RespawnHandler:bulk_add_to_omit(faction, hero_list)
 	end
 end
 
+---@param hero_name string
+---@param faction string
 function RespawnHandler:add_to_omit(hero_name, faction)
 	--Logger:trace("entering RespawnHandler:add_to_omit "..hero_name)
 	local owner = string.upper(faction)
@@ -284,6 +406,8 @@ function RespawnHandler:add_to_omit(hero_name, faction)
 	end
 end
 
+---@param hero_name string
+---@param faction string
 function RespawnHandler:remove_from_omit(hero_name, faction)
 	--Logger:trace("entering RespawnHandler:remove_from_omit "..hero_name)
 	local owner = string.upper(faction)
@@ -292,23 +416,17 @@ function RespawnHandler:remove_from_omit(hero_name, faction)
 	end
 end
 
-function RespawnHandler:regime_leader_trigger()
-	local regime_index = GlobalValue.Get("REGIME_INDEX")
-	if regime_index < 1 or regime_index > table.getn(self.regime_leaders) then
-		return
-	end
-	
-	local despawn = GlobalValue.Get("REGIME_DESPAWN")
+function RespawnHandler:regime_check()
 	local leading_empire = GlobalValue.Get("IMPERIAL_REMNANT")
-	if not leading_empire then
-		leading_empire = "EMPIRE"
-	end
-	
-	for _, hero_name in pairs(self.regime_leaders[regime_index]) do
-		if despawn then
-			self:add_to_omit(hero_name, leading_empire)
-		else
-			self:remove_from_omit(hero_name, leading_empire)
+	for regime, sets in pairs(self.regime_sets) do
+		for planet, herolist in pairs(sets) do
+			for _, hero_table in pairs(herolist) do
+				if hero_table.remove or hero_table.remove_isard or hero_table.remove_ccogm then
+					self:add_to_omit(hero_table.object, leading_empire)
+				--else
+				--	self:remove_from_omit(hero_table.object, leading_empire)
+				end
+			end
 		end
 	end
 end

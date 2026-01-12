@@ -1,17 +1,17 @@
-# Heroes Respawn (TR 3.3)
+# Heroes Respawn (TR 3.4)
 
 ## How to launch this mod
 
-1. Download Thrawns Revenge 3.3 from ModDB and extract it to your Mods folder as `TR33`.
-   - https://www.moddb.com/mods/thrawns-revenge/downloads/steam-thrawns-revenge-33
+1. Download Thrawns Revenge 3.4 from ModDB and extract it to your Mods folder as `TR34`.
+   - https://www.moddb.com/mods/thrawns-revenge/downloads/steam-thrawns-revenge-34
 
-2. Create a new folder in the Mods folder called `Respawn`, place `Data3.3` into it, and rename it to `Data`.
+2. Create a new folder in the Mods folder called `Respawn`, place `Data3.4` into it, and rename it to `Data`.
    - Example path: `C:\Program Files (x86)\Steam\steamapps\common\Star Wars Empire at War\corruption\Mods\Respawn\Data`
 
 3. Set launch options:
 
 ```
-ModPath=Mods\Respawn ModPath=Mods\TR33
+ModPath=Mods\Respawn ModPath=Mods\TR34
 ```
 
 ---
@@ -22,27 +22,30 @@ ModPath=Mods\Respawn ModPath=Mods\TR33
 
 ### About
 
-- Depending on the strength of the hero, most heroes will respawn in around **7 to 30 cycles** when "killed" (including AI).
-- This can be toggled on and off at any time through buttons in the *Advanced Options* tab (Human and AI can be toggled separately).
+Depending on the strength of the hero, most heroes will respawn in around **7 to 30 cycles** when "killed" (including AI).
+This can be toggled on and off at any time through buttons in the *Advanced Options* tab (Human and AI can be toggled separately).
+
 - Subsequent deaths by the same hero will increase their respawn time by **10%** each time.
 - Any special respawns remain unchanged.
+- All Imperial regime heroes will remain, even when progressing through regimes.
 
 ### Exceptions to respawn
 
-- Super Star Destroyer (SSD) heroes are excluded.
-- If a warlord faction gets integrated, their heroes not alive at that moment are gone.
-- Some heroes do not respawn when progressing through imperial regimes (this can be toggled in the Advanced Options tab).
+- Any hero over **120 pop** is excluded, along with Super Star Destroyer (SSD) heroes.
+- If a warlord faction gets integrated, their heroes that were not alive at that moment are gone.
 
 ### Recruitable heroes
 
+- **NEW:** Regional and Historical staff heroes are available for the New Republic and Galactic Empire in non-historical modes.
 - Imperial players may recruit multiple bounty hunters instead of only one.
+- All the random pirates can be hired by the Hutt Cartels and Zsinj's Empire.
 - New Republic recruitable commanders follow the same respawn rules.
-  When one of these heroes is defeated, their slot is effectively suspended until they respawn.
-- Extra New Republic slots can be purchased for **200 credits** as many times as you want (use the blue rebel button).
+  When one dies, their slot is effectively suspended until they respawn.
+- Extra New Republic slots can be purchased for **200 credits** each time. Use the blue rebel button labeled **"Increase max staff."**
 
-### One Planet Start
+### Infinities
 
-Heroes spawn at the beginning of FTGU single-planet start games, matching the selected era.
+Heroes spawn at the beginning of Custom GC and FTGU single-planet start games (all players), matching the selected era.
 
 ---
 

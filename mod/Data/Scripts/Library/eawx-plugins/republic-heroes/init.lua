@@ -21,12 +21,14 @@
 
 require("deepcore/std/plugintargets")
 require("eawx-plugins/republic-heroes/RepublicHeroes")
+require("eawx-plugins/republic-heroes/HeroesManager")
 
 return {
     target = PluginTargets.never(),
     init = function(self, ctx)
         local galactic_conquest = ctx.galactic_conquest
-        return RepublicHeroes(galactic_conquest, galactic_conquest.Events.GalacticHeroKilled, galactic_conquest.HumanPlayer)
+        local RepHeroes = RepublicHeroes(galactic_conquest, galactic_conquest.Events.GalacticHeroKilled, galactic_conquest.HumanPlayer)
+        HeroesManager(galactic_conquest, ctx.id, galactic_conquest.HumanPlayer, RepHeroes)
+        return RepHeroes
     end
 }
- 

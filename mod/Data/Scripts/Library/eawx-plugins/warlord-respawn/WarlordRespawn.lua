@@ -26,6 +26,8 @@ require("PGDebug")
 
 WarlordRespawn = class()
 
+---@param herokilled_finished_event GalacticHeroKilledEvent
+---@param human_player PlayerObject
 function WarlordRespawn:new(herokilled_finished_event, human_player)
     self.human_player = human_player
 	self.Active_Planets = StoryUtil.GetSafePlanetTable()
@@ -33,6 +35,8 @@ function WarlordRespawn:new(herokilled_finished_event, human_player)
     herokilled_finished_event:attach_listener(self.on_galactic_hero_killed, self)
 end
 
+---@param hero_name string
+---@param owner string
 function WarlordRespawn:on_galactic_hero_killed(hero_name, owner)
 	--Logger:trace("entering WarlordRespawn:on_galactic_hero_killed")
 	if hero_name == "DELVARDUS_THALASSA" then
