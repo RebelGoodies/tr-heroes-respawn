@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<Options>
+
+	<DummyStructure Name="Option_Cruel_On">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>TEXT_OPTION_DUMMY_CRUEL_ON</Text_ID>
+		<Encyclopedia_Text>TEXT_OPTION_DUMMY_CRUEL_ON_DESCRIPTION</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_button_cruel_ai_on.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_Cruel_Off">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>TEXT_OPTION_DUMMY_CRUEL_OFF</Text_ID>
+		<Encyclopedia_Text>TEXT_OPTION_DUMMY_CRUEL_OFF_DESCRIPTION</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_button_cruel_ai_off.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+
+</Options>
