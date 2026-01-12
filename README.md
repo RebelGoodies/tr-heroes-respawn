@@ -2,57 +2,41 @@
 
 <img src="mod/Splash.png" alt="Splash image" width="128" style="float: right; margin-left: 1em; margin-bottom: 1em;">
 
-# template-eawx-submod
+# TR Heroes Respawn
 
-Template repository for any EaWX submod.
+For those who love heroes!
 
-## Setup local
+### About
 
-Either clone or pull to a directory, where `<URL>` is the https or SSH link to the repository.
+- Most heroes under **50 population** (including AI) respawn on a **15 week timer** when "killed" while keeping era progression intact.
+- This is intended for weaker heroes that die frequently and can be disabled mid-campaign via `GameConstants.xml`.
+- Any special respawns remain unchanged.
 
-**Clone to new directory**
-```
-git clone <URL>
-```
+### Exceptions to respawn
 
-**Use existing directory**
-```
-git init -b main
-git remote add origin <URL>
-git pull origin main
-git branch --set-upstream-to=origin/main main
-```
+- All heroes over **49 population** will not respawn for balancing and player sanity.
+- Some Imperial heroes do not respawn for story purposes.
+- If a warlord faction gets integrated, their heroes not alive at that moment are gone.
 
-## Setup Upstream
+### Recruitable heroes
 
-Track unmodified EaWX source for easier comparing and merging.
+New Republic recruitable commanders (under 50 pop) get added back to the list some time after their death so you can recruit them again.
+For example, if Admiral Ackbar dies in his smaller 33 pop ship, you can recruit him again.
+If he dies in his 58 pop Home One, he is gone for good.
+(This feature is not affected by `GameConstants.xml`.)
 
-**Create vendor branch**
-```
-git checkout --orphan vendor/eawx
-git rm -rf .
-mkdir -p mod
-```
+### One Planet Start
 
-**Import and merge upstream files once**
-```
-git add mod
-git commit -m "Import EaWX mod upstream files"
-git checkout main
-git merge vendor/eawx --allow-unrelated-histories
-```
+Heroes spawn at the beginning of FTGU single-planet start games, matching the selected era.
 
-**Merge upstream updates**
-```
-git checkout main
-git merge -X theirs vendor/eawx
-```
+### How to edit GameConstants
 
-## EaWX Mods
+How to edit the time for a respawn:
 
-- Thrawn's Revenge (TR)
-- Fall of the Republic (FotR)
-- Revan's Revenge (RR)
+1. Go to: `Data/XML`
+2. Open `GameConstants.xml`
+3. Find the line 417: `<Default_Hero_Respawn_Time>600.0</Default_Hero_Respawn_Time>`
+4. You can set it to a negative number to deactivate it between saved games.
 
 # License
 

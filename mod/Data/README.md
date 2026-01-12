@@ -26,15 +26,11 @@ ModPath=Mods\Respawn ModPath=Mods\TR32
 - This is intended for weaker heroes that die frequently and can be disabled mid-campaign via `GameConstants.xml`.
 - Any special respawns remain unchanged.
 
----
-
 ### Exceptions to respawn
 
 - All heroes over **49 population** will not respawn for balancing and player sanity.
 - Some Imperial heroes do not respawn for story purposes.
 - If a warlord faction gets integrated, their heroes not alive at that moment are gone.
-
----
 
 ### Recruitable heroes
 
@@ -43,13 +39,9 @@ For example, if Admiral Ackbar dies in his smaller 33 pop ship, you can recruit 
 If he dies in his 58 pop Home One, he is gone for good.
 (This feature is not affected by `GameConstants.xml`.)
 
----
-
 ### One Planet Start
 
 Heroes spawn at the beginning of FTGU single-planet start games, matching the selected era.
-
----
 
 ### How to edit GameConstants
 
@@ -57,7 +49,7 @@ How to edit the time for a respawn:
 
 1. Go to: `Steam\steamapps\workshop\content\32470\2802599273\Data\XML`
 2. Open `GameConstants.xml`
-3. Find the line 417: `<Default_Hero_Respawn_Time>600.0</Default_Hero_Respawn_Time>`
+3. Find line 417: `<Default_Hero_Respawn_Time>600.0</Default_Hero_Respawn_Time>`
 4. You can set it to a negative number to deactivate it between saved games.
 
 ---
