@@ -33,7 +33,9 @@ function BountyHunters:new(gc)
 		"Menndo_Team",
 		"Snoova_Team",
 		"Labansat_Team",
-		"Dej_Vennor_Team"
+		"Dej_Vennor_Team",
+		"Moxin_Tark_Team",
+		"Dyzz_Nataz_Team"
     }
     self.PossibleRecruiters = {
         "EMPIRE",
@@ -41,7 +43,8 @@ function BountyHunters:new(gc)
         "GREATER_MALDROOD",
         "PENTASTAR",
         "ZSINJ_EMPIRE",
-		"CORPORATE_SECTOR"
+		"CORPORATE_SECTOR",
+		"HUTT_CARTELS"
     }
     --galactic_conquest class
     self.gc = gc

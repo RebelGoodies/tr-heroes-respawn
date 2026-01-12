@@ -94,7 +94,7 @@ function CadetLoop(args)
 			
 		if influence_level > 0 then
 			if academy_owner.Is_Human() then
-				StoryUtil.ShowScreenText("TEXT_COMMANDER_SPAWN_PLANET", 5, academy_planet)
+				StoryUtil.ShowScreenText("A commander has spawned at "..academy_planet.Get_Type().Get_Name(), 5)
 			end
 			local commanders
 			local tier_chance

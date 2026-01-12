@@ -86,10 +86,10 @@ function Unlock_Hero_Options(hero_data)
 				hero_data.active_player.Unlock_Tech(assign_unit)
 			end
 		end
-		if hero_data.vacant_hero_slots > 0 and hero_data.vacant_limit > 0 then
-			local assign_unit = Find_Object_Type(hero_data.extra_name)
-			hero_data.active_player.Unlock_Tech(assign_unit)
-		end
+	end
+	if hero_data.vacant_hero_slots > 0 and hero_data.vacant_limit > 0 then
+		local assign_unit = Find_Object_Type(hero_data.extra_name)
+		hero_data.active_player.Unlock_Tech(assign_unit)
 	end
 end
 
@@ -117,20 +117,29 @@ function Get_Active_Heroes(init, hero_data)
 					if init == true then
 						remove_hero_entry(index, hero_data)
 					end
-					table.insert(text_list, entry[4])
+					local postfix = ""
+					if hero_data.full_list[index].Locked then
+						 postfix = " [Locked]"
+					end
+					table.insert(text_list, entry[4] .. postfix)
 					hero_data.full_list[index].unit_id = index2 --Set the unit index to the version found
 				end
 				break
 			end
 		end
 	end
+	if init == true then
+		hero_data.free_hero_slots = hero_data.total_slots - hero_data.vacant_hero_slots - admiral_count
+	end
+	
 	DebugMessage("Admiral check count: %s vacant: %s total: %s", tostring(admiral_count), tostring(hero_data.vacant_hero_slots), tostring(hero_data.total_slots))
-	for id=admiral_count+1,admiral_count+hero_data.vacant_hero_slots do
-		table.insert(text_list, "TEXT_GOVERNMENT_COMMAND_STAFF_VACANT")
+	for id=1,hero_data.free_hero_slots do
+		table.insert(text_list, "OPEN")
 	end
-	for id=admiral_count+hero_data.vacant_hero_slots+1,hero_data.total_slots do
-		table.insert(text_list, "TEXT_GOVERNMENT_COMMAND_STAFF_OPEN")
+	for id=1,hero_data.vacant_hero_slots do
+		table.insert(text_list, "VACANT (requires purchase)")
 	end
+
 	GlobalValue.Set(hero_data.global_display_list, text_list)
 	return admiral_count
 end
@@ -156,9 +165,9 @@ end
 
 function Handle_Hero_Despawn(hero_tag, hero_data)
 	local hero_entry = hero_data.full_list[hero_tag]
-	for flaship_id=1,table.getn(hero_entry[3]) do
-		local hero_retire = hero_entry[2][flaship_id]
-		local hero_unit = hero_entry[3][flaship_id]
+	for flagship_id=1,table.getn(hero_entry[3]) do
+		local hero_retire = hero_entry[2][flagship_id]
+		local hero_unit = hero_entry[3][flagship_id]
 		
 		local check_hero = Find_First_Object(hero_retire)
 		local planet
@@ -168,8 +177,8 @@ function Handle_Hero_Despawn(hero_tag, hero_data)
 		end
 		local bypassflag = false
 		if hero_entry.Units then
-			for units_id=1,table.getn(hero_entry.Units[flaship_id]) do
-				check_hero = Find_First_Object(hero_entry.Units[flaship_id][units_id])
+			for units_id=1,table.getn(hero_entry.Units[flagship_id]) do
+				check_hero = Find_First_Object(hero_entry.Units[flagship_id][units_id])
 				if TestValid(check_hero) then
 					check_hero.Despawn()
 					bypassflag = true
@@ -179,7 +188,7 @@ function Handle_Hero_Despawn(hero_tag, hero_data)
 			check_hero = Find_First_Object(hero_unit)
 		end
 		if TestValid(check_hero) or bypassflag then
-			hero_data.full_list[hero_tag].unit_id = flaship_id
+			hero_data.full_list[hero_tag].unit_id = flagship_id
 			if not hero_entry.Units then
 				check_hero.Despawn()
 			end
@@ -250,48 +259,53 @@ end
 
 --Call this for deaths detected by Gamescoring
 function Handle_Hero_Killed(killed_object, owner, hero_data)
-	if Find_Player(owner) == hero_data.active_player then
-		for index, entry in pairs(hero_data.full_list) do
-			for j, variant in pairs(entry[3]) do
-				local killing = false
-				if variant == killed_object then
-					killing = true
-				end
-				if entry.Companies then
-					if entry.Companies[j] == killed_object then
+	if hero_data.initialized then
+		if Find_Player(owner) == hero_data.active_player then
+			for index, entry in pairs(hero_data.full_list) do
+				for j, variant in pairs(entry[3]) do
+					local killing = false
+					if variant == killed_object then
 						killing = true
 					end
-				end
-				if killing then
-					if hero_data.total_slots > 0 then
-						if hero_data.active_player.Is_Human() then
-							hero_data.vacant_hero_slots = hero_data.vacant_hero_slots + 1
-							if hero_data.vacant_limit > 0 then
-								local assign_unit = Find_Object_Type(hero_data.extra_name)
-								hero_data.active_player.Unlock_Tech(assign_unit)
-								StoryUtil.ShowScreenText("Be more careful with our heroes, Commander. We can only replace " .. hero_data.vacant_limit .. " more such loss(es)", 5, nil, {r = 244, g = 244, b = 0})
-							else
-								if hero_data.vacant_hero_slots >= hero_data.total_slots then
-									StoryUtil.ShowScreenText("Your have spent enough lives of our heroes, Commander. There will be no more for you to spend", 5, nil, {r = 244, g = 244, b = 0})
-								else
-									StoryUtil.ShowScreenText("We can no longer sustain these losses among our leadership, Commander. No more command positions will be opened if you lose what remains.", 5, nil, {r = 244, g = 244, b = 0})
-								end
-							end
-							hero_data.vacant_limit = hero_data.vacant_limit - 1
-							local text_list = GlobalValue.Get(hero_data.global_display_list)
-							for i, text in pairs(text_list) do
-								if text == entry[4] then
-									table.remove(text_list,i)
-									table.insert(text_list, "TEXT_GOVERNMENT_ADMIRAL_VACANT")
-									GlobalValue.Set(hero_data.global_display_list, text_list)
-									break
-								end
-							end
-						else
-							hero_data.free_hero_slots = hero_data.free_hero_slots + 1
-							Unlock_Hero_Options(hero_data)
+
+					if entry.Companies then
+						if entry.Companies[j] == killed_object then
+							killing = true
 						end
-						return index
+					end
+					if killing then
+						if hero_data.total_slots > 0 then
+							if hero_data.active_player.Is_Human() then
+								hero_data.vacant_hero_slots = hero_data.vacant_hero_slots + 1
+								if hero_data.vacant_limit > 0 then
+									local assign_unit = Find_Object_Type(hero_data.extra_name)
+									hero_data.active_player.Unlock_Tech(assign_unit)
+									StoryUtil.ShowScreenText("Be more careful with our heroes, Commander. We can only replace " .. hero_data.vacant_limit .. " more such loss(es).", 5, nil, {r = 244, g = 244, b = 0})
+								else
+									if hero_data.vacant_hero_slots >= hero_data.total_slots then
+										StoryUtil.ShowScreenText("Your have spent enough lives of our heroes, Commander. There will be no more for you to spend.", 5, nil, {r = 244, g = 244, b = 0})
+									else
+										StoryUtil.ShowScreenText("We can no longer sustain these losses among our leadership, Commander. No more command positions will be opened if you lose what remains.", 5, nil, {r = 244, g = 244, b = 0})
+									end
+								end
+								hero_data.vacant_limit = hero_data.vacant_limit - 1
+								local text_list = GlobalValue.Get(hero_data.global_display_list)
+								for i, text in pairs(text_list) do
+									if text == entry[4] then
+										table.remove(text_list,i)
+										if hero_data.vacant_limit >= 0 then
+											table.insert(text_list, "VACANT (requires purchase)")
+										end
+										GlobalValue.Set(hero_data.global_display_list, text_list)
+										break
+									end
+								end
+							else
+								hero_data.free_hero_slots = hero_data.free_hero_slots + 1
+								Unlock_Hero_Options(hero_data)
+							end
+							return index
+						end
 					end
 				end
 			end
@@ -341,19 +355,40 @@ end
 --Handle the permanent removal of an option for story purposes
 function Handle_Hero_Exit(hero_tag, hero_data, story_locked)
 	local entry = hero_data.full_list[hero_tag]
-	for index, ship in pairs(entry[3]) do
-		local find_it = Find_First_Object(ship)
-		if TestValid(find_it) then
-			find_it.Despawn()
-			hero_data.free_hero_slots = hero_data.free_hero_slots + 1
-			Lock_Hero_Options(hero_data)
-			Unlock_Hero_Options(hero_data)
-			Get_Active_Heroes(false,hero_data)
-			if story_locked then
-				hero_data.story_locked_list[hero_tag] = true
+	
+	if entry == nil then
+		return
+	end
+	
+	local hero_found = false
+	for flagship_id=1,table.getn(entry[3]) do
+		if entry.Units then
+			for units_id=1,table.getn(entry.Units[flagship_id]) do
+				check_hero = Find_First_Object(entry.Units[flagship_id][units_id])
+				if TestValid(check_hero) then
+					check_hero.Despawn()
+					hero_found = true
+				end
 			end
-			return true
+		else
+			local find_it = Find_First_Object(entry[3][flagship_id])
+			if TestValid(find_it) then
+				find_it.Despawn()
+				hero_found = true
+				break
+			end
 		end
+	end
+	
+	if hero_found then
+		hero_data.free_hero_slots = hero_data.free_hero_slots + 1
+		Lock_Hero_Options(hero_data)
+		Unlock_Hero_Options(hero_data)
+		Get_Active_Heroes(false,hero_data)
+		if story_locked then
+			hero_data.story_locked_list[hero_tag] = true
+		end
+		return true
 	end
 	
 	if remove_hero_entry(hero_tag, hero_data) and story_locked then
@@ -389,6 +424,7 @@ function Decrement_Hero_Amount(amount, hero_data)
 	if hero_data.free_hero_slots <= 0 then
 		Lock_Hero_Options(hero_data)
 	end
+	Get_Active_Heroes(false, hero_data)
 end
 
 function spawn_random_option(hero_data)
@@ -411,8 +447,15 @@ function set_unit_index(hero_tag, id, hero_data)
 end
 
 function lock_retires(hero_list, hero_data)
-	for _, tag in pairs(hero_list) do
-		local entry = hero_data.full_list[tag]
+	for _, hero_tag in pairs(hero_list) do
+		local entry = hero_data.full_list[hero_tag]
+
+		if entry == nil then
+			return
+		end
+		
+		hero_data.full_list[hero_tag].Locked = true
+
 		for _, retire in pairs(entry[2]) do
 			local retire_unit = Find_Object_Type(retire)
 			hero_data.active_player.Lock_Tech(retire_unit)
@@ -437,6 +480,20 @@ function check_hero_exists(hero_tag, hero_data)
 	return false
 end
 
+function Show_Hero_Info(hero_data)
+	local text_list = GlobalValue.Get(hero_data.global_display_list)
+	local active_string = ""
+	for i, text in pairs(text_list) do
+		if i > 1 then
+			active_string = active_string .. ", "
+		end
+		active_string = active_string .. text
+	end
+	StoryUtil.ShowScreenText("Active heroes: " .. hero_data.total_slots - hero_data.vacant_hero_slots - hero_data.free_hero_slots .. "     Total slots: " .. hero_data.total_slots, 5, nil, {r = 244, g = 244, b = 0})
+	StoryUtil.ShowScreenText(active_string, 5, nil, {r = 244, g = 244, b = 0})
+	StoryUtil.ShowScreenText("Remaining category hero losses: " .. hero_data.vacant_limit, 5, nil, {r = 244, g = 244, b = 0})
+end
+
 function Disable_Hero_Options(hero_data)
 	hero_data.disabled = true
 	Lock_Hero_Options(hero_data)
@@ -445,4 +502,11 @@ end
 function Enable_Hero_Options(hero_data)
 	hero_data.disabled = false
 	Unlock_Hero_Options(hero_data)
+end
+
+function Set_Locked_Slots(hero_data, quantity)
+	hero_data.vacant_hero_slots = hero_data.vacant_hero_slots + quantity
+	hero_data.free_hero_slots = hero_data.free_hero_slots - quantity
+	Unlock_Hero_Options(hero_data)
+	Get_Active_Heroes(false, hero_data)
 end
