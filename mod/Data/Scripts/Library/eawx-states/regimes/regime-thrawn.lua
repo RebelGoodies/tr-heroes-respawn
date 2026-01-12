@@ -5,7 +5,7 @@ require("PGSpawnUnits")
 
 return {
     on_enter = function(self, state_context)
-	
+
         self.Active_Planets = StoryUtil.GetSafePlanetTable()
 		GlobalValue.Set("REGIME_INDEX", 3)
         self.entry_time = GetCurrentTime()
@@ -80,30 +80,56 @@ return {
 				"Noghri_Assassin_Squad",
 				"Imperial_AT_PT_Company"
             })
+			
+			UnitUtil.DespawnList{"Dummy_Regicide_Thrawn"}
             
-            UnitUtil.DespawnList{
-                "Dummy_Regicide_Thrawn",
-                "Grey_Wolf",
-				"Brashin_Inquisitor",
-				"Tal_Ashen_AT_AT_Walker",
-				"Ysanne_Isard",
-                "Lusankya",
-                "Corrupter_Star_Destroyer",   
-				"Devlia_IEC",
-                "Agonizer_Star_Destroyer",
-				"Vorru",
-                "Hissa_Moffship",
-                "Tigellinus_Avatar",
-				"Jedgar",
-				"Kadann",
-				"Trioculus",
-				"Dunhausen_Espa",
-				"Muzzer_Whaladon",
-				"Thistleborn_DarkGreeter",
-				"Lanox_Hazard",
-            }
-			Story_Event("REMOVE_DLARIT")
-            
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				UnitUtil.DespawnList{
+					--"Dummy_Regicide_Thrawn",
+					"Grey_Wolf",
+					"Brashin_Inquisitor",
+					"Tal_Ashen_AT_AT_Walker",
+					"Ysanne_Isard",
+					"Lusankya",
+					"Corrupter_Star_Destroyer",   
+					"Devlia_IEC",
+					"Agonizer_Star_Destroyer",
+					"Vorru",
+					"Hissa_Moffship",
+					"Tigellinus_Avatar",
+					"Jedgar",
+					"Kadann",
+					"Trioculus",
+					"Dunhausen_Espa",
+					"Muzzer_Whaladon",
+					"Thistleborn_DarkGreeter",
+					"Lanox_Hazard",
+				}
+				Story_Event("REMOVE_DLARIT")
+			
+				crossplot:publish("OMIT_RESPAWN","Grey_Wolf","EMPIREOFTHEHAND")
+				crossplot:publish("OMIT_RESPAWN_BULK","EMPIRE",{
+					"Brashin_Inquisitor",
+					"Tal_Ashen_Team",
+					"Ysanne_Isard_Team", --Leader Isard
+					"Lusankya", --Leader Isard
+					"Corrupter_Star_Destroyer",
+					"Devlia_IEC",
+					"Agonizer_Star_Destroyer",
+					"Vorru_Team",
+					"Hissa_Moffship", --Leader ccogm
+					"Tigellinus_Avatar",
+					"Jedgar_Team",
+					"Kadann_Team",
+					"Trioculus_Team",
+					"Dunhausen_Espa",
+					"Muzzer_Whaladon",
+					"Thistleborn_DarkGreeter",
+					"Lanox_Hazard",
+					"Elite_Squadron", --Squadron Erisi_Dlarit
+				})
+            end
         end
     
     end,

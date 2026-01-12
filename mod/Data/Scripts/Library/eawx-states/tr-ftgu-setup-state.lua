@@ -1,13 +1,15 @@
 --require("deepcore/crossplot/crossplot")
 require("eawx-util/StoryUtil")
+require("eawx-util/StoryUtil2")
 require("PGStoryMode")
 require("PGSpawnUnits")
 
 return {
     on_enter = function(self, state_context)
+		crossplot:publish("INITIALIZE_AI", "empty")
 
 		self.entry_time = GetCurrentTime()
-		self.Active_Planets = StoryUtil.GetSafePlanetTable()
+		--self.Active_Planets = StoryUtil.GetSafePlanetTable()
 		
 		local era = GlobalValue.Get("CURRENT_ERA")
 		
@@ -27,16 +29,13 @@ return {
 			self.Starting_Spawns = require("eawx-mod-icw/spawn-sets/EraSevenStartSet")
 		end
 		
-		if self.entry_time <= 5 and self.Starting_Spawns then
-			for faction, spawnlist in pairs(self.Starting_Spawns) do
-				local player = Find_Player(faction)
-				for planet, herolist in pairs(spawnlist) do
-				
-					for _, hero in pairs(herolist) do
-						local random_planet = StoryUtil.FindFriendlyPlanet(player)
-						if not random_planet then
-							break
-						end
+		for faction, spawnlist in pairs(self.Starting_Spawns) do
+			--StoryUtil.ShowScreenText(faction, 120, nil, {r = 244, g = 244, b = 0})
+			local player = Find_Player(faction)
+			for planet, herolist in pairs(spawnlist) do
+				for _, hero in pairs(herolist) do
+					local random_planet = StoryUtil2.FindFriendlyPlanet(player)
+					if random_planet then
 						SpawnList({hero}, random_planet, player, true, false)
 					end
 				end
@@ -46,5 +45,9 @@ return {
     on_update = function(self, state_context)
     end,
     on_exit = function(self, state_context)
+        local placeholder_table = Find_All_Objects_Of_Type("Placement_Dummy")
+        for i, unit in pairs(placeholder_table) do
+            unit.Despawn()
+        end
     end
 }

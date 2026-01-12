@@ -5,7 +5,7 @@ return function(dsl)
     local policy = dsl.policy
 
     local initialize = DeepCoreState.with_empty_policy()
-    local setup = DeepCoreState(require("eawx-states/tr-setup-state"))
+    local setup = DeepCoreState(require("eawx-states/tr-ftgu-setup-state"))
     local era_one = DeepCoreState(require("eawx-states/ftgu/tr-ftgu-era-one"))
     local era_two = DeepCoreState(require("eawx-states/ftgu/tr-ftgu-era-two"))
     local era_three = DeepCoreState(require("eawx-states/ftgu/tr-ftgu-era-three"))
@@ -23,6 +23,9 @@ return function(dsl)
         :to(era_two)
         :when(policy:global_era(2))
         :end_()
+
+    dsl.transition(setup)
+        :to(era_three)
         :when(policy:global_era(3))
         :end_()
 

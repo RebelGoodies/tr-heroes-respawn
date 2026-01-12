@@ -10,8 +10,9 @@ function YearHandler:new(start_year, start_month, id)
     self.start_year = start_year
     self.suffix = CONSTANTS.YEAR_SUFFIX
     self.events = true
+	self.EventLibrary = require("YearlyEventLibrary")
     if id == "FTGU" then
-        self.events = false
+        self.EventLibrary = {["19 ABY"] = {{month = 6, name = "TERRIK_UPGRADE_START"}}} --
     end
     if start_year == nil then
         self.start_year = CONSTANTS.START_YEAR
@@ -39,7 +40,6 @@ function YearHandler:new(start_year, start_month, id)
         end
 		GlobalValue.Set("ACTIVE_MOD", 1) -- 0 = TR; 1 = FotR; 2 = RevRev
     end
-    self.EventLibrary = require("YearlyEventLibrary")
 end
 
 function YearHandler:update()

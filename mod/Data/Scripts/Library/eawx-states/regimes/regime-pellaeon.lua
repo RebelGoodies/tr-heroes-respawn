@@ -1,8 +1,8 @@
 require("eawx-util/StoryUtil")
 require("eawx-util/UnitUtil")
+require("eawx-util/ChangeOwnerUtilities")
 require("PGStoryMode")
 require("PGSpawnUnits")
-require("eawx-util/ChangeOwnerUtilities")
 
 return {
     on_enter = function(self, state_context)
@@ -73,17 +73,31 @@ return {
 			end
             
         else
-		
-			UnitUtil.DespawnList{
-                "Dummy_Regicide_Pellaeon",
-                "Gorgon",
-				"Daala_Knight_Hammer",
-				"Ardax_Vendetta",
-                "Odosk",
-				"Fredja",
-                "Tol_Sivron",
-				"Agonizer_Star_Destroyer"
-            }
+			UnitUtil.DespawnList{"Dummy_Regicide_Pellaeon"}
+			
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				UnitUtil.DespawnList{
+					--"Dummy_Regicide_Pellaeon",
+					"Gorgon",
+					"Daala_Knight_Hammer",
+					"Ardax_Vendetta",
+					"Odosk",
+					"Fredja",
+					"Tol_Sivron",
+					"Agonizer_Star_Destroyer",
+				}
+
+				crossplot:publish("OMIT_RESPAWN_BULK",self.Leading_Empire,{
+					"Gorgon", --Leader Dalla
+					"Daala_Knight_Hammer", --Leader Dalla
+					"Ardax_Vendetta",
+					"Odosk_Team",
+					"Fredja_Team",
+					"Sivron_Team",
+					"Agonizer_Star_Destroyer",
+				})
+			end
 
             self.Starting_Spawns = require("eawx-mod-icw/spawn-sets/EmpireProgressSets")
             for planet, spawnlist in pairs(self.Starting_Spawns["PELLAEON"]) do

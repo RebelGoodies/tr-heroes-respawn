@@ -162,6 +162,26 @@ function GovernmentNewRepublic:ElectionHeld()
     DebugMessage("GovernmentNewRepublic ElectionHeld Finished")
 end
 
+function show_slots(admiral_list, government_display_event)
+	local open_count = 0
+	local vacant_count = 0
+	for index, obj in pairs(admiral_list) do
+		if obj == "TEXT_GOVERNMENT_COMMAND_STAFF_OPEN" or obj == "TEXT_GOVERNMENT_ADMIRAL_OPEN" then
+			open_count = open_count + 1
+		elseif obj == "TEXT_GOVERNMENT_COMMAND_STAFF_VACANT" or obj == "TEXT_GOVERNMENT_ADMIRAL_VACANT" then
+			vacant_count = vacant_count + 1
+		else
+			government_display_event.Add_Dialog_Text(obj)
+		end
+	end
+	if open_count > 0 then
+		government_display_event.Add_Dialog_Text("OPEN: " .. open_count)
+	end
+	if vacant_count > 0 then
+		government_display_event.Add_Dialog_Text("VACANT (Dead): " .. vacant_count)
+	end
+end
+
 function GovernmentNewRepublic:UpdateDisplay()
     --Logger:trace("entering GovernmentNewRepublic:UpdateDisplay")
     local plot = Get_Story_Plot("Conquests\\Player_Agnostic_Plot.xml")
@@ -183,28 +203,25 @@ function GovernmentNewRepublic:UpdateDisplay()
             "TEXT_GOVERNMENT_SUPPORTED_COS",
             Find_Object_Type(GlobalValue.Get("ChiefOfStatePreference"))
         )
-		if self.id == "FTGU" then
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COMMAND_STAFF_FTGU")
-		else
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_ADMIRAL_LIST")
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			local admiral_list = GlobalValue.Get("NR_ADMIRAL_LIST")
-			if admiral_list ~= nil then
-				for index, obj in pairs(admiral_list) do
-					government_display_event.Add_Dialog_Text(obj)
-				end
-			end
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_COUNCIL_LIST")
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			local admiral_list = GlobalValue.Get("NR_JEDI_LIST")
-			if admiral_list ~= nil then
-				for index, obj in pairs(admiral_list) do
-					government_display_event.Add_Dialog_Text(obj)
-				end
-			end
+		
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_ADMIRAL_LIST")
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		
+		local admiral_list = GlobalValue.Get("NR_ADMIRAL_LIST")
+		if admiral_list ~= nil then
+			show_slots(admiral_list, government_display_event)
 		end
+		
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_COUNCIL_LIST")
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		
+		local admiral_list = GlobalValue.Get("NR_JEDI_LIST")
+		if admiral_list ~= nil then
+			show_slots(admiral_list, government_display_event)
+		end
+		
         government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
         
         government_display_event.Add_Dialog_Text("TEXT_NONE")
@@ -252,50 +269,45 @@ function GovernmentNewRepublic:UpdateDisplay()
         
         government_display_event.Add_Dialog_Text("TEXT_NONE")
 		
-		if self.id == "FTGU" then
-
-		else
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_HEADER")
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_0")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_1")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_2")
-				
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_LIST")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ACKBAR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_NANTZ")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_SOVV")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_HAN")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_HAN2")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_LANDO")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_GARM")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_DRAYSON")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_TALLON")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BURKE")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_MASSA")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_DORAT")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_RAGAB")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_SNUNB")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_KALBACK")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_VANTAI")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_GRANT")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BELL")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BRAND")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ABAHT")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_KREFEY")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_NAMMO")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ACKDOOL")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_HEADER")
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_0")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_1")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_HERO_SYSTEM_2")
 			
-			government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_LIST")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_KYLE")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_MARA")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_CILGHAL")
-			government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_CORRAN")
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_LIST")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ACKBAR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_NANTZ")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_SOVV")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_HAN")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_HAN2")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_LANDO")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_GARM")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_DRAYSON")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_TALLON")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BURKE")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_MASSA")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_DORAT")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_RAGAB")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_SNUNB")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_KALBACK")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_VANTAI")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_GRANT")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BELL")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_BRAND")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ABAHT")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_KREFEY")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_NAMMO")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_ADMIRAL_ACKDOOL")
 		
-		end
+		government_display_event.Add_Dialog_Text("TEXT_DOCUMENTATION_BODY_SEPARATOR")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_LIST")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_KYLE")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_MARA")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_CILGHAL")
+		government_display_event.Add_Dialog_Text("TEXT_GOVERNMENT_NEW_REPUBLIC_COUNCIL_CORRAN")
 		
         Story_Event("GOVERNMENT_DISPLAY")
 	end

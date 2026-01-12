@@ -86,7 +86,7 @@ function Unlock_Hero_Options(hero_data)
 				hero_data.active_player.Unlock_Tech(assign_unit)
 			end
 		end
-		if hero_data.vacant_hero_slots > 0 and hero_data.vacant_limit > 0 then
+		if hero_data.vacant_hero_slots > 0 and (table.getn(hero_data.available_list) - hero_data.free_hero_slots) > 0 then
 			local assign_unit = Find_Object_Type(hero_data.extra_name)
 			hero_data.active_player.Unlock_Tech(assign_unit)
 		end
@@ -265,19 +265,8 @@ function Handle_Hero_Killed(killed_object, owner, hero_data)
 				if killing then
 					if hero_data.total_slots > 0 then
 						if hero_data.active_player.Is_Human() then
-							hero_data.vacant_hero_slots = hero_data.vacant_hero_slots + 1
-							if hero_data.vacant_limit > 0 then
-								local assign_unit = Find_Object_Type(hero_data.extra_name)
-								hero_data.active_player.Unlock_Tech(assign_unit)
-								StoryUtil.ShowScreenText("Be more careful with our heroes, Commander. We can only replace " .. hero_data.vacant_limit .. " more such loss(es)", 5, nil, {r = 244, g = 244, b = 0})
-							else
-								if hero_data.vacant_hero_slots >= hero_data.total_slots then
-									StoryUtil.ShowScreenText("Your have spent enough lives of our heroes, Commander. There will be no more for you to spend", 5, nil, {r = 244, g = 244, b = 0})
-								else
-									StoryUtil.ShowScreenText("We can no longer sustain these losses among our leadership, Commander. No more command positions will be opened if you lose what remains.", 5, nil, {r = 244, g = 244, b = 0})
-								end
-							end
-							hero_data.vacant_limit = hero_data.vacant_limit - 1
+							--hero_data.vacant_hero_slots = hero_data.vacant_hero_slots + 1
+							--hero_data.vacant_limit = hero_data.vacant_limit - 1
 							local text_list = GlobalValue.Get(hero_data.global_display_list)
 							for i, text in pairs(text_list) do
 								if text == entry[4] then
@@ -288,7 +277,7 @@ function Handle_Hero_Killed(killed_object, owner, hero_data)
 								end
 							end
 						else
-							hero_data.free_hero_slots = hero_data.free_hero_slots + 1
+							--hero_data.free_hero_slots = hero_data.free_hero_slots + 1
 							Unlock_Hero_Options(hero_data)
 						end
 						return index
@@ -305,7 +294,7 @@ function Handle_Hero_Death(hero_data)
 	--You'd think you could simply increment hero_data.vacant_hero_slots when someone dies, but two+ deaths in the same battle will only register one
 	--On the plus side, calculating this from scratch means the distinction between death, retirement, and flagship swap is found here instead of through a bunch of disable events
 	local active_heroes = Get_Active_Heroes(false,hero_data)
-	hero_data.vacant_hero_slots = hero_data.total_slots - hero_data.free_hero_slots - active_heroes
+	--hero_data.vacant_hero_slots = hero_data.total_slots - hero_data.free_hero_slots - active_heroes
 	if hero_data.total_slots <= 0 then
 		hero_data.vacant_hero_slots = 0
 	end
@@ -321,13 +310,13 @@ function Handle_New_Hero_Slot(hero_data)
 		new_slot.Despawn()
 	end
 	if hero_data.vacant_limit >= 0 then
-		if hero_data.active_player.Is_Human() then
-			StoryUtil.ShowScreenText(hero_data.vacant_limit .. " more hero replacement(s) remain", 5, nil, {r = 244, g = 244, b = 0})
-		end
+		--if hero_data.active_player.Is_Human() then
+		--	StoryUtil.ShowScreenText(hero_data.vacant_limit .. " more hero replacement(s) remain", 5, nil, {r = 244, g = 244, b = 0})
+		--end
 		hero_data.vacant_hero_slots = hero_data.vacant_hero_slots - 1
 		hero_data.free_hero_slots = hero_data.free_hero_slots + 1
 		Unlock_Hero_Options(hero_data)
-		if hero_data.vacant_hero_slots == 0 then
+		if hero_data.vacant_hero_slots < 0 or (table.getn(hero_data.available_list) - hero_data.free_hero_slots) < 0 then
 			local assign_unit = Find_Object_Type(hero_data.extra_name)
 			hero_data.active_player.Lock_Tech(assign_unit)
 		end

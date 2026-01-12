@@ -1,8 +1,8 @@
 require("eawx-util/StoryUtil")
 require("eawx-util/UnitUtil")
+require("eawx-util/ChangeOwnerUtilities")
 require("PGStoryMode")
 require("PGSpawnUnits")
-require("eawx-util/ChangeOwnerUtilities")
 
 return {
 	on_enter = function(self, state_context)
@@ -90,19 +90,32 @@ return {
 				"Imperial_PX10_Company",
 				"Imperial_TNT_Company"
 			})
-
-			UnitUtil.DespawnList{
-				"Dummy_Regicide_CCoGM",
-				"Sate_Pestage",
-				"Carvin",
-				"Kermen_Belligerent",
-				"Tal_Ashen_AT_AT_Walker",
-				"Reckoning_Star_Destroyer",
-				"Brashin_Inquisitor",
-				"Okins_Allegiance"
-			}
-
 			
+			UnitUtil.DespawnList{"Dummy_Regicide_CCoGM"}
+
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				UnitUtil.DespawnList{
+					--"Dummy_Regicide_CCoGM",
+					"Sate_Pestage",
+					"Carvin",
+					"Kermen_Belligerent",
+					"Tal_Ashen_AT_AT_Walker",
+					"Reckoning_Star_Destroyer",
+					"Brashin_Inquisitor",
+					"Okins_Allegiance",
+				}
+
+				crossplot:publish("OMIT_RESPAWN_BULK","EMPIRE",{
+					"Pestage_Team", --Leader Pestage
+					"Carvin_Team",
+					"Kermen_Belligerent",
+					"Tal_Ashen_Team",
+					"Reckoning_Star_Destroyer",
+					"Brashin_Inquisitor",
+					"Okins_Allegiance",
+				})
+			end
 		end
 
 	end,

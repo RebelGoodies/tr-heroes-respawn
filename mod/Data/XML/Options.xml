@@ -48,5 +48,238 @@
 		
 		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
 	</DummyStructure>
+	
+	<DummyStructure Name="Option_Respawn_On">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Enable Human Hero Respawns</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Allow your Heroes to respawn. The Respawn time is
+		unique for each hero and depends on their estimated
+		strength. Each death increases the respawn time by 10%
+		for that hero. - [Can be deactivated]
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>mini_map_infantryhealing.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_Respawn_Off">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Disable Human Hero Respawns</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Prevent your heroes from respawning，even those that
+		are currently under a respawn timer. No new timers will
+		be set. If an old timer expires，they are gone forever.
+		- [Can be reactivated]
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_sa_bl_disruptor.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_AI_Respawn_On">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Enable AI Hero Respawns</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Allow enemy AI Heroes to respawn globally. The Respawn
+		time is unique for each hero and depends on their
+		estimated strength. Each death increases the respawn
+		time by 10% for that hero. - [Can be deactivated]
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>mini_map_infantryhealing.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_AI_Respawn_Off">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Disable AI Hero Respawns</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Prevent enemy AI heroes from respawning，even those
+		that are currently under a respawn timer. No new timers
+		will be set. If an old timer expires，they are gone
+		forever. - [Can be reactivated]
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_sa_bl_proximity_mines.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<SpaceUnit Name="Random_Bounty_Hunter_2">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>TEXT_HERO_RANDOM_BOUNTY_HUNTER</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Recruits random bounty hunter from list.
+		TEXT_NONE
+		Options:
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_BOBA_FETT
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_DENGAR
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_BOSSK
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_DEJ_VENNOR
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_MENNDO
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_LABANSAT
+		TEXT_TOOLTIP_RANDOM_BOUNTY_HUNTER_SNOOVA
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_BOUNTY_HUNTER</Encyclopedia_Unit_Class>
+		
+		<Icon_Name>I_BUTTON_BOUNTY_HUNTER.TGA</Icon_Name>
+		<GUI_Row> 0 </GUI_Row>
+		
+		<Affiliation>Empire, Pentastar, Zsinj_Empire, Greater_Maldrood, Eriadu_Authority, Corporate_Sector</Affiliation>
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>AI_Category_Dummy | Story_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>3000</Build_Cost_Credits>
+		<Build_Time_Seconds>20</Build_Time_Seconds>
+		
+		<Population_Value>1</Population_Value>
+		
+		<CategoryMask>Upgrade</CategoryMask>
+		
+		<SFXEvent_Build_Complete>Unit_Galactic_Announce_Bounty_Hunter</SFXEvent_Build_Complete>
+		<SFXEvent_Build_Started>EHD_Build_Bounty_Hunter</SFXEvent_Build_Started>
+		<SFXEvent_Build_Cancelled>EHD_Recruitment_Canceled</SFXEvent_Build_Cancelled>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</SpaceUnit>
+	
+	<DummyStructure Name="Option_Increase_Rep_Staff">
+		<Variant_Of_Existing_Type>Template_Flagship_Swap</Variant_Of_Existing_Type>
+
+		<Text_ID>Increase Max Staff</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Increase the total number of New Republic admirals that
+		can be active at the same time by one.
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+
+		<Icon_Name>i_button_nr.tga</Icon_Name>
+
+		<CategoryMask>Wall</CategoryMask>
+
+		<GUI_Row>1</GUI_Row>
+		<Affiliation>Rebel</Affiliation>
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy | Story_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>200</Build_Cost_Credits>
+		<Build_Time_Seconds>1</Build_Time_Seconds>
+		<Build_Limit_Current_Per_Player>2</Build_Limit_Current_Per_Player>
+		<Build_Limit_Lifetime_Per_Player>20</Build_Limit_Lifetime_Per_Player>
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_Regime_No_Despawn">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Disable Regime Hero Removal</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Prevent regime specific heroes from leaving when
+		transitioning to the next Imperial regime.
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_encyclopedia_underworld_symbol.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
+	
+	<DummyStructure Name="Option_Regime_Yes_Despawn">
+		<Variant_Of_Existing_Type>Template_Research_Dummy</Variant_Of_Existing_Type>
+		
+		<Text_ID>Enable Regime Hero Removal</Text_ID>
+		<Encyclopedia_Text> <!-- non-breaking space (U+00A0) is used -->
+		Allow the current regime specific heroes to despawn
+		when transitioning to the next Imperial regime.
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_encyclopedia_underworld_symbol.tga</Icon_Name>
+		
+		<Affiliation>Empire, Rebel, Underworld, EmpireoftheHand, Pentastar, Greater_Maldrood, Zsinj_Empire, Hapes_Consortium, Eriadu_Authority, Corporate_Sector, SsiRuuvi_Imperium</Affiliation>
+		<Lua_Script>DelayedSelfDelete</Lua_Script>
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Tech_Level>0</Tech_Level>
+		<Required_Special_Structures>Options_Category_Dummy</Required_Special_Structures>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>3</Build_Time_Seconds>
+		
+		<Required_Star_Base_Level>1</Required_Star_Base_Level>
+		
+		<Build_Limit_Current_Per_Player>1</Build_Limit_Current_Per_Player>
+	</DummyStructure>
 
 </Options>

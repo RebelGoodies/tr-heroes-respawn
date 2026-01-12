@@ -1,8 +1,8 @@
 require("eawx-util/StoryUtil")
 require("eawx-util/UnitUtil")
+require("eawx-util/ChangeOwnerUtilities")
 require("PGStoryMode")
 require("PGSpawnUnits")
-require("eawx-util/ChangeOwnerUtilities")
 
 return {
     on_enter = function(self, state_context)
@@ -86,16 +86,28 @@ return {
 			UnitUtil.SetLockList("EMPIRE", {
 				"Strike_Cruiser"
 			})
+			
+			UnitUtil.DespawnList{"Project_Ambition_Dummy"}
 
-            UnitUtil.DespawnList{
-                "Project_Ambition_Dummy",
-				"Sate_Pestage",
-                "Carvin",
-                "Kermen_Belligerent",
-				"Reckoning_Star_Destroyer",
-                "Okins_Allegiance"
-            }
-            
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				UnitUtil.DespawnList{
+					--"Project_Ambition_Dummy",
+					"Sate_Pestage",
+					"Carvin",
+					"Kermen_Belligerent",
+					"Reckoning_Star_Destroyer",
+					"Okins_Allegiance",
+				}
+
+				crossplot:publish("OMIT_RESPAWN_BULK","EMPIRE",{
+					"Pestage_Team", --Leader Pestage
+					"Carvin_Team",
+					"Kermen_Belligerent",
+					"Reckoning_Star_Destroyer",
+					"Okins_Allegiance",
+				})
+			end
         end
 
     end,

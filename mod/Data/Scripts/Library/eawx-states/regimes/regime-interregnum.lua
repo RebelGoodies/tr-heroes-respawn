@@ -33,18 +33,35 @@ return {
 			"Noghri_Assassin_Squad"
 		}, false)
 		
-		 UnitUtil.DespawnList{
-			"Corellian_Gunboat_Ferrier",
-			"Judicator_Star_Destroyer",
-			"Relentless_Star_Destroyer",
-			"Dezon_Constrainer",
-			"Covell_AT_AT_Walker",
-			"Joruus_Cboath",   
-			"Drost",
-			"Rukh",
-			"Reckoning_Star_Destroyer",
-		}
-		Story_Event("REMOVE_PHENNIR")
+		self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+		if self.despawn then
+			 UnitUtil.DespawnList{
+				"Corellian_Gunboat_Ferrier",
+				"Judicator_Star_Destroyer",
+				"Relentless_Star_Destroyer",
+				"Dezon_Constrainer",
+				"Covell_AT_AT_Walker",
+				"Joruus_Cboath",   
+				"Drost",
+				"Rukh",
+				"Reckoning_Star_Destroyer",
+			}
+			Story_Event("REMOVE_PHENNIR")
+
+			crossplot:publish("OMIT_RESPAWN_BULK","EMPIRE",{
+					"Chimera", --Leader Thrawn
+					"Corellian_Gunboat_Ferrier",
+					"Judicator_Star_Destroyer",
+					"Relentless_Star_Destroyer",
+					"Dezon_Constrainer",
+					"General_Covell_Team",
+					"Joruus_Cboath_Team",
+					"Drost_Team",
+					"Rukh_Team",
+					"Reckoning_Star_Destroyer",
+					"181st_TIE_Interceptor_Squadron", --Squadron Turr_Phennir_TIE_Interceptor
+				})
+		end
 		
 		if Find_Player("local") == Find_Player("Empire") then
             StoryUtil.Multimedia("TEXT_CONQUEST_EVENT_IR_THRAWN_DEATH", 15, nil, "Imperial_Naval_Officer_Loop", 0)

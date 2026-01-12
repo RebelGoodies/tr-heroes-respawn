@@ -1,14 +1,15 @@
 require("eawx-util/StoryUtil")
+require("eawx-util/UnitUtil")
 require("eawx-util/ChangeOwnerUtilities")
 require("PGStoryMode")
 require("PGSpawnUnits")
-require("eawx-util/ChangeOwnerUtilities")
 
 return {
     on_enter = function(self, state_context)
 
         self.LeaderApproach = false
         self.Leading_Empire = GlobalValue.Get("IMPERIAL_REMNANT")
+		
         GlobalValue.Set("REGIME_INDEX", 6)
         self.Active_Planets = StoryUtil.GetSafePlanetTable()
         self.entry_time = GetCurrentTime()
@@ -106,29 +107,43 @@ return {
                 SpawnList(spawn_list_Daala, planet, Find_Player(self.Leading_Empire), true, false)
 
             end
+			
+			UnitUtil.DespawnList{"Dummy_Regicide_Daala"}
 
-            self.DespawnList = {
-                "Dummy_Regicide_Daala",
-                "Emperors_Revenge_Star_Destroyer",
-                "Jeratai_Allegiance",
-                "Xexus_Shev",
-                "Kooloota-Fyf",
-                "Carnor_Jax",
-                "Mahd_Windcaller",
-                "Manos",
-                "Za",
-                "Immodet_Floating_Fortress"
-            }
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				self.DespawnList = {
+					--"Dummy_Regicide_Daala",
+					"Emperors_Revenge_Star_Destroyer",
+					"Jeratai_Allegiance",
+					"Xexus_Shev",
+					"Kooloota-Fyf",
+					"Carnor_Jax",
+					"Mahd_Windcaller",
+					"Manos",
+					"Za",
+					"Immodet_Floating_Fortress",
+				}
 
-            for _, object in pairs(self.DespawnList) do
-                checkObject = Find_First_Object(object) -- doesn't work if hero respawning
-                if TestValid(checkObject) then
-                    checkObject.Despawn()
-				else
-					Story_Event("ERA_SIX_START") -- Manual xml removal
-					break
-                end
-            end
+				crossplot:publish("OMIT_RESPAWN_BULK",self.Leading_Empire,{
+					"Emperors_Revenge_Star_Destroyer",
+					"Jeratai_Allegiance",
+					"Xexus_Shev_Team",
+					"Kooloota_Team",
+					"Carnor_Jax_Team", --Leader Carnor
+					"Windcaller_Team",
+					"Manos_Team",
+					"Za_Team",
+					"Immodet_Fortress_Company",
+				})
+
+				for _, object in pairs(self.DespawnList) do
+					checkObject = Find_First_Object(object)
+					if TestValid(checkObject) then
+						checkObject.Despawn()
+					end
+				end
+			end
 		
 			crossplot:publish("ERA_SIX_TRANSITION", "empty")
 
@@ -137,7 +152,7 @@ return {
     end,
     on_update = function(self, state_context)
         self.current_time = GetCurrentTime() - self.entry_time
-        if (self.current_time >= 60) and (self.LeaderApproach == false) and (self.progress == true) then
+        if (self.current_time >= 10) and (self.LeaderApproach == false) and (self.progress == true) then
             self.LeaderApproach = true
             if Find_Player("local") == Find_Player(self.Leading_Empire) then
                 StoryUtil.Multimedia("TEXT_CONQUEST_EVENT_IR_PELLAEON_CONTACT", 15, nil, "Daala_Loop", 0)

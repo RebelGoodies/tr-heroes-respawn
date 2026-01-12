@@ -38,6 +38,7 @@ return {
     "resource-manager",
     "revolt-manager",
     "blockade-attrition",
+	"respawn-handler",
     "bounty-hunters",
 	"warlord-respawn",
     "statemachine-main",

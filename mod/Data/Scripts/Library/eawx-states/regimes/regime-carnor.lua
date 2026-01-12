@@ -1,14 +1,15 @@
 require("eawx-util/StoryUtil")
 require("eawx-util/UnitUtil")
+require("eawx-util/ChangeOwnerUtilities")
 require("PGStoryMode")
 require("PGSpawnUnits")
-require("eawx-util/ChangeOwnerUtilities")
 
 return {
     on_enter = function(self, state_context)
 
         self.LeaderApproach = false
         self.Leading_Empire = GlobalValue.Get("IMPERIAL_REMNANT")
+		
         GlobalValue.Set("REGIME_INDEX", 5)
         self.Active_Planets = StoryUtil.GetSafePlanetTable()
         self.entry_time = GetCurrentTime()
@@ -58,7 +59,7 @@ return {
                 "Mekuun_HQ",
                 "Cygnus_HQ",
 				-- Historical-only units
-				"Imperial_Navy_Commando_Squad"             
+				"Imperial_Navy_Commando_Squad",
             }, false)
 			
 			if Find_Player("local") == Find_Player("Empire") then
@@ -82,20 +83,40 @@ return {
                 "Imperial_Compforce_Assault_Squad"
             }, false)
 			
-            UnitUtil.DespawnList{
-                "Dummy_Regicide_Jax",
-                "Emperor_Palpatine",
-                "Sedriss",
-				"Veers_AT_AT_Walker",
-				"Grath_Dark_Stormtrooper",
-                "Praji_Secutor",
-                "Umak_Leth",
-                "Chimera_Pellaeon_Vice",
-                "Cronal_Singularity",
-				"Klev_Frigate_Devastator",
-				"Klev_Capital_Devastator",
-				"Klev_Battlecruiser_Devastator"
-            }
+			UnitUtil.DespawnList{"Dummy_Regicide_Jax"}
+			
+			self.despawn = GlobalValue.Get("REGIME_DESPAWN")
+			if self.despawn then
+				UnitUtil.DespawnList{
+					--"Dummy_Regicide_Jax",
+					"Emperor_Palpatine",
+					"Sedriss",
+					"Veers_AT_AT_Walker",
+					"Grath_Dark_Stormtrooper",
+					"Praji_Secutor",
+					"Umak_Leth",
+					"Chimera_Pellaeon_Vice",
+					"Cronal_Singularity",
+					"Klev_Frigate_Devastator",
+					"Klev_Capital_Devastator",
+					"Klev_Battlecruiser_Devastator",
+				}
+
+				crossplot:publish("OMIT_RESPAWN_BULK",self.Leading_Empire,{
+					"Emperor_Palpatine_Team", --Leader Palpatine
+					"Dark_Empire_Cloning_Facility",
+					"Sedriss_Team",
+					"General_Veers_Team",
+					"Grath_Dark_Stormtrooper_Team",
+					"Praji_Secutor",
+					"Umak_Team",
+					"Chimera_Pellaeon_Vice",
+					"Cronal_Singularity",
+					"Klev_Frigate_Devastator",
+					"Klev_Capital_Devastator",
+					"Klev_Battlecruiser_Devastator",
+				})
+			end
         end
     end,
     on_update = function(self, state_context)
