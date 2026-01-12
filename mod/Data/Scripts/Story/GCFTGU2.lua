@@ -16,7 +16,7 @@ function Initialize(message)
 		crossplot:galactic()
 		p_newrep = Find_Player("Rebel")
 		if p_newrep.Is_Human() then
-			crossplot:publish("NR_ADMIRAL_DECREMENT", 10)
+			--crossplot:publish("NR_ADMIRAL_DECREMENT", 10)
 			crossplot:publish("NR_ADMIRAL_LOCKIN", {"Bell"})
 		end
 	else

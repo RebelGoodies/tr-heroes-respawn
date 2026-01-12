@@ -4,6 +4,8 @@
 	<Active_Plot>Conquests\IsardsRevenge\Story_Sandbox_IsardsRevenge_Rebel.XML</Active_Plot>
 	
 	<Active_Plot>Conquests\Story_Sandbox_Universal_Lock_NR.xml</Active_Plot>
+	<!-- Added for Heroes Respawn submod -->
+	<Active_Plot>Conquests\Heroes_Respawn\Heroes_Respawn_REBEL.xml</Active_Plot>
 	
 	<Lua_Script>GovernmentHandlerNewRepublic</Lua_Script>
 	<Active_Plot>Conquests\Story_Sandbox_Government_NR.xml</Active_Plot>

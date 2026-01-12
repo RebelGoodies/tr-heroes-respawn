@@ -68,10 +68,13 @@ return {
             }
 
             for _, object in pairs(self.DespawnList) do
-                checkObject = Find_First_Object(object)
+                checkObject = Find_First_Object(object) -- doesn't work if hero respawning
                 if TestValid(checkObject) then
                     checkObject.Despawn()
-                end
+                else
+					Story_Event("ERA_FIVE_START") -- for submod
+					break
+				end
             end
             self.Starting_Spawns = require("eawx-mod-icw/spawn-sets/EraFiveProgressSet")
             for faction, herolist in pairs(self.Starting_Spawns) do

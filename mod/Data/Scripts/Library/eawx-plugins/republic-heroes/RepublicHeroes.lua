@@ -13,8 +13,8 @@
 --*       File:              RepublicHeroes.lua                                                     *
 --*       File Created:      Monday, 24th February 2020 02:19                                      *
 --*       Author:            [TR] Jorritkarwehr                                                             *
---*       Last Modified:     Monday, 24th February 2020 02:34                                      *
---*       Modified By:       [TR] Jorritkarwehr                                                             *
+--*       Last Modified:     Thursday, 6th May 2022                                     *
+--*       Modified By:       Not Jorritkarwehr                                                             *
 --*       Copyright:         Thrawns Revenge Development Team                                      *
 --*       License:           This code may not be used without the author's explicit permission    *
 --**************************************************************************************************
@@ -94,6 +94,16 @@ function RepublicHeroes:new(gc, herokilled_finished_event, human_player)
 		},
 		story_locked_list = {--Heroes not accessible, but able to return with the right conditions
 			["Dorat"] = true
+		},
+		One_Life_List = {--Ships and Heroes that never return after death
+			"HOME_ONE",
+			"NANTZ_INDEPENDENCE",
+			"LANDO_ALLEGIANCE",
+			"IBLIS_HARBINGER",
+			"Nammo",
+			"Massa",
+			"Dorat",
+			"Ackdool",
 		},
 		active_player = Find_Player("Rebel"),
 		extra_name = "EXTRA_ADMIRAL_SLOT",
@@ -215,7 +225,7 @@ function RepublicHeroes:on_galactic_hero_killed(hero_name, owner)
 		end
 	end
 	local tag = Handle_Hero_Killed(hero_name, owner, hero_data)
-	if tag == "Ackbar" then
+	if tag == "Ackbar" and hero_name == "HOME_ONE" then
 		if not check_hero_exists("Ackbar", hero_data) then
 			Handle_Hero_Add("Nammo", hero_data)
 		end
@@ -246,6 +256,28 @@ function RepublicHeroes:on_galactic_hero_killed(hero_name, owner)
 		SpawnList({"Lando_Calrissian_Team"}, planet, hero_data.active_player, true, false)
 		if hero_data.active_player.Is_Human() then
 			Story_Event("LANDO_RESPAWN_SPEECH")
+		end
+	end
+	
+	local test = false
+	for index, entry in pairs(hero_data.full_list) do
+		if index == tag then
+			test = true
+			break
+		end
+	end
+	if test then
+		for index, obj in pairs(hero_data.One_Life_List) do
+			if tag == obj or obj == hero_name then
+				test = false
+				break
+			end
+		end
+		if test then
+			Handle_Hero_Add(tag, hero_data) -- Add back to build list
+--			if not check_hero_entry(tag, hero_data) then
+--				table.insert(hero_data.available_list, tag)
+--				Unlock_Hero_Options(hero_data)
 		end
 	end
 end

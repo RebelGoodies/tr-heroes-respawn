@@ -3,5 +3,7 @@
 <Story_Mode_Plots>
 
 	<Active_Plot>Conquests\Factional_Buildable_HUTTS.xml</Active_Plot>
+	<!-- Added for Heroes Respawn submod -->
+	<Active_Plot>Conquests\Heroes_Respawn\Heroes_Respawn_HUTTS.xml</Active_Plot>
 	
 </Story_Mode_Plots>

@@ -49,6 +49,7 @@ function WarlordRespawn:on_galactic_hero_killed(hero_name, owner)
 			end
 			if self.start_planet then
 				SpawnList({"Delvardus_Brilliant"}, self.start_planet, p_eriadu, true, false)
+				Story_Event("REMOVE_DELVARDUS_THALASSA")
 				Story_Event("DELVARDUS_RETURNS")
 			end
 		end
@@ -65,6 +66,7 @@ function WarlordRespawn:on_galactic_hero_killed(hero_name, owner)
 			end
 			if self.start_planet then
 				SpawnList({"CrimsonSunrise_Star_Destroyer"}, self.start_planet, p_maldrood, true, false)
+				Story_Event("REMOVE_TERADOC")
 				Story_Event("TERADOC_RETURNS")
 			end
 		end

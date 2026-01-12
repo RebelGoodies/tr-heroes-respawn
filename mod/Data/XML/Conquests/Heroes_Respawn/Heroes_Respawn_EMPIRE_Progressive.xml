@@ -1,0 +1,380 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<!-- You're checking out the files eh? -->
+	<!-- Could not find a way to use .Despawn() on respawning hero -->
+	<!-- Preserve era hero despawn with xml -->
+	
+	<!-- Entering Era Two -->
+	
+	<Event Name="Era_2_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_TWO_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Sate_Pestage">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Sate_Pestage</Reward_Param1>
+		<Prereq>Era_2_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Carvin">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Carvin</Reward_Param1>
+		<Prereq>Era_2_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Kermen_Belligerent">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Kermen_Belligerent</Reward_Param1>
+		<Prereq>Era_2_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Brashin_Inquisitor">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Brashin_Inquisitor</Reward_Param1>
+		<Prereq>Era_2_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Okins_Allegiance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Okins_Allegiance</Reward_Param1>
+		<Prereq>Era_2_Start</Prereq>
+	</Event>
+	
+	<!-- Entering Era Three -->
+	
+	<Event Name="Era_3_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_THREE_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Lusankya">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Lusankya</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Thrawn_Grey_Wolf">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Grey_Wolf</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Reckoning_Star_Destroyer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Reckoning_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Corrupter_Star_Destroyer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Corrupter_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Agonizer_Star_Destroyer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Agonizer_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Vorru">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Vorru</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Grath_Stormtrooper">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Grath_Stormtrooper</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Veers_AT_AT_Walker">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Veers_AT_AT_Walker</Reward_Param1>
+		<Prereq>Era_3_Start</Prereq>
+	</Event>
+	
+	<!-- Entering Era Four -->
+	
+	<Event Name="Era_4_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_FOUR_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Thrawn">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Chimera</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Aralani_Frontier">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Aralani_Frontier</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Mon_Mothma">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Mon_Mothma</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Covell_AT_AT_Walker">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Covell_AT_AT_Walker</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Judicator_Star_Destroyer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Judicator_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Relentless_Star_Destroyer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Relentless_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Joruus_Cboath">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Joruus_Cboath</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Dezon_Constrainer">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Dezon_Constrainer</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Drost">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Drost</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Corellian_Gunboat_Ferrier">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Corellian_Gunboat_Ferrier</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Rukh">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Rukh</Reward_Param1>
+		<Prereq>Era_4_Start</Prereq>
+	</Event>
+	
+	<!-- Entering Era Five -->
+	
+	<Event Name="Era_5_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_FIVE_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Emperor_Palpatine">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Emperor_Palpatine</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Sedriss">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Sedriss</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Veers_AT_AT_Walker">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Veers_AT_AT_Walker</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Praji_Secutor">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Praji_Secutor</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Umak_Leth">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Umak_Leth</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Chimera_Pellaeon_Vice">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Chimera_Pellaeon_Vice</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Cronal_Singularity">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Cronal_Singularity</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Grath_Dark_Stormtrooper">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Grath_Dark_Stormtrooper</Reward_Param1>
+		<Prereq>Era_5_Start</Prereq>
+	</Event>
+	
+	<!-- Entering Era Six -->
+	
+	<Event Name="Era_6_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_SIX_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Emperor">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Emperors_Revenge_Star_Destroyer</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Jeratai_Allegiance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Jeratai_Allegiance</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Xexus_Shev">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Xexus_Shev</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Kooloota-Fyf">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Kooloota-Fyf</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Carnor_Jax">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Carnor_Jax</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Mahd_Windcaller">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Mahd_Windcaller</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Manos">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Manos</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Za">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Za</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Immodet_Floating_Fortress">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Immodet_Floating_Fortress</Reward_Param1>
+		<Prereq>Era_6_Start</Prereq>
+	</Event>
+	
+	<!-- Entering Era Seven -->
+	
+	<Event Name="Era_7_Start">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>ERA_SEVEN_START</Event_Param2>
+    </Event>
+	
+	<Event Name="Remove_Errant_Venture">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Errant_Venture</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Gorgon">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Gorgon</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Ardax_Vendetta">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Ardax_Vendetta</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Odosk">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Odosk</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Fredja">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Fredja</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+	
+	<Event Name="Remove_Tol_Sivron">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Tol_Sivron</Reward_Param1>
+		<Prereq>Era_7_Start</Prereq>
+	</Event>
+
+</Story>

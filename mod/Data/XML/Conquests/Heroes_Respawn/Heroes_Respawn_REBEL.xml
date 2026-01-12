@@ -1,0 +1,637 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<!-- Executor SSD Heroes - 210 pop -->
+	
+	<Event Name="Ackbar_Guardian_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Ackbar_Guardian</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Ackbar_Guardian">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Ackbar_Guardian</Reward_Param1>
+		<Prereq>Ackbar_Guardian_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	<Event Name="Wedge_Lusankya_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Wedge_Lusankya</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Wedge_Lusankya">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Wedge_Lusankya</Reward_Param1>
+		<Prereq>Wedge_Lusankya_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<!-- ******************** Remove Command Staff ******************** -->
+	<!-- ******************** Remove Command Staff ******************** -->
+	<!-- ******************** Remove Command Staff ******************** -->
+	
+	<Event Name="Snunb_Antares_Six_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Snunb_Antares_Six</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Snunb_Antares_Six">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Snunb_Antares_Six</Reward_Param1>
+		<Prereq>Snunb_Antares_Six_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Snunb_Resolve_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Snunb_Resolve</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Snunb_Resolve">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Snunb_Resolve</Reward_Param1>
+		<Prereq>Snunb_Resolve_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Krefey_Ralroost_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Krefey_Ralroost</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Krefey_Ralroost">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Krefey_Ralroost</Reward_Param1>
+		<Prereq>Krefey_Ralroost_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Drayson_True_Fidelity_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Drayson_True_Fidelity</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Drayson_True_Fidelity">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Drayson_True_Fidelity</Reward_Param1>
+		<Prereq>Drayson_True_Fidelity_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Drayson_New_Hope_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Drayson_New_Hope</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Drayson_New_Hope">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Drayson_New_Hope</Reward_Param1>
+		<Prereq>Drayson_New_Hope_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Sovv_Dauntless_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Sovv_Dauntless</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Sovv_Dauntless">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Sovv_Dauntless</Reward_Param1>
+		<Prereq>Sovv_Dauntless_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Sovv_Voice_People_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Sovv_Voice_of_the_People</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Sovv_Voice_People">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Sovv_Voice_of_the_People</Reward_Param1>
+		<Prereq>Sovv_Voice_People_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Brand_Indomitable_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Brand_Indomitable</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Brand_Indomitable">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Brand_Indomitable</Reward_Param1>
+		<Prereq>Brand_Indomitable_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Brand_Yald_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Brand_Yald</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Brand_Yald">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Brand_Yald</Reward_Param1>
+		<Prereq>Brand_Yald_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Iblis_Peregrine_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Iblis_Peregrine</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Iblis_Peregrine">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Iblis_Peregrine</Reward_Param1>
+		<Prereq>Iblis_Peregrine_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Iblis_Selonian_Fire_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Iblis_Selonian_Fire</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Iblis_Selonian_Fire">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Iblis_Selonian_Fire</Reward_Param1>
+		<Prereq>Iblis_Selonian_Fire_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Iblis_Bail_Organa_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Iblis_Bail_Organa</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Iblis_Bail_Organa">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Iblis_Bail_Organa</Reward_Param1>
+		<Prereq>Iblis_Bail_Organa_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Mediator heroes - 88 pop -->
+	
+	<Event Name="Iblis_Harbinger_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Iblis_Harbinger</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Iblis_Harbinger">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Iblis_Harbinger</Reward_Param1>
+		<Prereq>Iblis_Harbinger_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Ackdool_Mediator_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Ackdool_Mediator</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Ackdool_Mediator">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Ackdool_Mediator</Reward_Param1>
+		<Prereq>Ackdool_Mediator_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- MC80B heroes - 25 pop -->
+	
+	<Event Name="Solo_Remonda_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Solo_Remonda</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Solo_Remonda">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Solo_Remonda</Reward_Param1>
+		<Prereq>Solo_Remonda_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Han_Intrepid_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Han_Intrepid</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Han_Intrepid">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Han_Intrepid</Reward_Param1>
+		<Prereq>Han_Intrepid_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Burke_Remember_Alderaan_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Burke_Remember_Alderaan</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Burke_Remember_Alderaan">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Burke_Remember_Alderaan</Reward_Param1>
+		<Prereq>Burke_Remember_Alderaan_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- MC Liberty heroes -->
+	
+	<Event Name="Tallon_Silent_Water_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Tallon_Silent_Water</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Tallon_Silent_Water">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Tallon_Silent_Water</Reward_Param1>
+		<Prereq>Tallon_Silent_Water_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Kalback_Justice_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Kalback_Justice</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Kalback_Justice">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Kalback_Justice</Reward_Param1>
+		<Prereq>Kalback_Justice_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- ISD heroes - 31-63 pop -->
+	
+	<Event Name="Vantai_Moonshadow_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Vantai_Moonshadow</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Vantai_Moonshadow">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Vantai_Moonshadow</Reward_Param1>
+		<Prereq>Vantai_Moonshadow_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Ragab_Emancipator_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Ragab_Emancipator</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Ragab_Emancipator">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Ragab_Emancipator</Reward_Param1>
+		<Prereq>Ragab_Emancipator_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Lando_Liberator_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Lando_Liberator</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Lando_Liberator">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Lando_Liberator</Reward_Param1>
+		<Prereq>Lando_Liberator_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Lando_Allegiance_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Lando_Allegiance</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Lando_Allegiance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Lando_Allegiance</Reward_Param1>
+		<Prereq>Lando_Allegiance_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Grant_Oriflamme_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Grant_Oriflamme</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Grant_Oriflamme">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Grant_Oriflamme</Reward_Param1>
+		<Prereq>Grant_Oriflamme_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Endurance heroes - 26 pop -->
+	
+	<Event Name="Abaht_Intrepid_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Abaht_Intrepid</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Abaht_Intrepid">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Abaht_Intrepid</Reward_Param1>
+		<Prereq>Abaht_Intrepid_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Bell_Endurance_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Bell_Endurance</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Bell_Endurance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Bell_Endurance</Reward_Param1>
+		<Prereq>Bell_Endurance_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Home One Type heroes - 58 pop -->
+	
+	<Event Name="Ackbar_Home_One_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Home_One</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Ackbar_Home_One">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Home_One</Reward_Param1>
+		<Prereq>Ackbar_Home_One_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Ackbar_Galactic_Voyager_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Galactic_Voyager</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Ackbar_Remove_Galactic_Voyager">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Galactic_Voyager</Reward_Param1>
+		<Prereq>Ackbar_Galactic_Voyager_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Nantz_Independence_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Nantz_Independence</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Nantz_Independence">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Nantz_Independence</Reward_Param1>
+		<Prereq>Nantz_Independence_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Nantz_Faithful_Watchman_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Nantz_Faithful_Watchman</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Nantz_Faithful_Watchman">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Nantz_Faithful_Watchman</Reward_Param1>
+		<Prereq>Nantz_Faithful_Watchman_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	
+	<Event Name="Nammo_Defiance_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Nammo_Defiance</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Nammo_Defiance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Nammo_Defiance</Reward_Param1>
+		<Prereq>Nammo_Defiance_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Bulwark III heroes - 52 pop -->
+	
+	<Event Name="Dorat_Arrow_of_Sullust_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Dorat_Arrow_of_Sullust</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Dorat_Arrow_of_Sullust">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Dorat_Arrow_of_Sullust</Reward_Param1>
+		<Prereq>Dorat_Arrow_of_Sullust_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Lucrehulk heroes - 78 pop -->
+	
+	<Event Name="Massa_Lucrehulk_Auxiliary_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Massa_Lucrehulk_Auxiliary</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Massa_Lucrehulk_Auxiliary">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Massa_Lucrehulk_Auxiliary</Reward_Param1>
+		<Prereq>Massa_Lucrehulk_Auxiliary_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Massa_Lucrehulk_Carrier_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Massa_Lucrehulk_Carrier</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Massa_Lucrehulk_Carrier">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Massa_Lucrehulk_Carrier</Reward_Param1>
+		<Prereq>Massa_Lucrehulk_Carrier_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+
+</Story>

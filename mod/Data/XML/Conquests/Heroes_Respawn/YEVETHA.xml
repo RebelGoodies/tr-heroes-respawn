@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<!-- Check when Yevetha are released -->
+	
+	<!-- Aramadia SSD Heroes - 168 pop -->
+	
+	<Event Name="Spaar_Aramadia_SSD_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Spaar_Aramadia_SSD</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Spaar_Aramadia_SSD">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Spaar_Aramadia_SSD</Reward_Param1>
+		<Prereq>Spaar_Aramadia_SSD_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+
+	<Event Name="Spaar_Aramadia_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Spaar_Aramadia</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Spaar_Aramadia">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Spaar_Aramadia</Reward_Param1>
+		<Prereq>Spaar_Aramadia_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- EX_F Hero - 117 pop -->
+	
+	<Event Name="Fraan_Glory_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Fraan_Glory</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Fraan_Glory">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Fraan_Glory</Reward_Param1>
+		<Prereq>Fraan_Glory_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Communications Battlecruiser - 96 pop -->
+	
+	<Event Name="Noorr_Purity_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Noorr_Purity</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Noorr_Purity">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Noorr_Purity</Reward_Param1>
+		<Prereq>Noorr_Purity_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+
+</Story>

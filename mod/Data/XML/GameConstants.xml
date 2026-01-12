@@ -414,7 +414,7 @@
 	<!-- UNUSED - unit cap is now per faction in Factions.xml
 	<Space_Tactical_Unit_Cap>40</Space_Tactical_Unit_Cap> -->
 	<!-- <Allow_Reinforcement_Percentage_Normalized> 0.0 </Allow_Reinforcement_Percentage_Normalized> -->
-	<Default_Hero_Respawn_Time>-360.0</Default_Hero_Respawn_Time>
+	<Default_Hero_Respawn_Time>600.0</Default_Hero_Respawn_Time> <!-- 40 is 1 week ingame -->
 	<LandFOWColor>130,130,130,0</LandFOWColor>
 	<SpaceFOWColor>255,255,255,255</SpaceFOWColor>
     <SpaceReinforceFOWColor>255,0,0,254</SpaceReinforceFOWColor>

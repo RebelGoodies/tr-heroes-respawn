@@ -29,6 +29,7 @@ require("deepcore-extensions/initialize")
 require("eawx-statemachine/dsl/TransitionPolicyFactory")
 require("eawx-statemachine/dsl/TransitionEffectBuilderFactory")
 
+
 function Definitions()
     DebugMessage("%s -- In Definitions", tostring(Script))
 
@@ -43,12 +44,17 @@ function Begin_GC(message)
         GameObjectLibrary = ModContentLoader.get("GameObjectLibrary")
         local plot = StoryUtil.GetPlayerAgnosticPlot()
 
+        local era = Find_Player("local").Get_Tech_Level()
+        if Find_Player("local") == Find_Player("Rebel") then
+            era = era + 1
+        end
+        GlobalValue.Set("CURRENT_ERA", era)
+
         local plugin_list = ModContentLoader.get("InstalledPlugins")
         local context = {
             plot = plot,
             maxroutes = 6,
-            id = "PROGRESSIVE",
-            legitimacy_absorb = 0,
+            id = "FTGU",
             statemachine_dsl_config = {
                 transition_policy_factory = EawXTransitionPolicyFactory,
                 transition_effect_builder_factory = EawXTransitionEffectBuilderFactory
@@ -62,7 +68,7 @@ function Begin_GC(message)
             planet_factory = function(planet_name)
                 local Planet = require("deepcore-extensions/galaxy/Planet")
                 return Planet(planet_name)
-            end
+            end   
         }
 
     elseif message == OnUpdate then

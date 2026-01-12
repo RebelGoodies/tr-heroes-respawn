@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<Event Name="Universal_Story_Start">
+		<Event_Type>STORY_ELAPSED</Event_Type>
+		<Event_Param1>0</Event_Param1>
+	</Event>
+	
+	<!-- Bulwark III Heroes - 52 pop -->
+	
+	<Event Name="Grumby_Notropis_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Grumby_Notropis</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Grumby_Notropis">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Grumby_Notropis</Reward_Param1>
+		<Prereq>Grumby_Notropis_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	
+	<Event Name="Siin_Suub_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Siin_Suub_Proclamation</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Siin_Suub">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Siin_Suub_Proclamation</Reward_Param1>
+		<Prereq>Siin_Suub_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+
+</Story>

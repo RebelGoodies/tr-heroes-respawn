@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<!-- Gets downgraded -->
+	
+	<Event Name="13X_Teradoc_Destroyed">
+        <Event_Type>STORY_AI_NOTIFICATION</Event_Type>
+        <Event_Param2>REMOVE_TERADOC</Event_Param2>
+    </Event>
+	
+	<Event Name="13X_Teradoc_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>13X_Teradoc</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_13X_Teradoc">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>13X_Teradoc</Reward_Param1>
+		<Prereq>13X_Teradoc_Destroyed</Prereq>
+		<Prereq>13X_Teradoc_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Allegiance - 63 pop -->
+	
+	<Event Name="Therbon_Allegiance_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Therbon_Allegiance</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Therbon_Allegiance">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Therbon_Allegiance</Reward_Param1>
+		<Prereq>Therbon_Allegiance_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Secutor - 50 pop -->
+	
+	<Event Name="Trier_Secutor_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Trier_Secutor</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Trier_Secutor">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Trier_Secutor</Reward_Param1>
+		<Prereq>Trier_Secutor_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+
+</Story>

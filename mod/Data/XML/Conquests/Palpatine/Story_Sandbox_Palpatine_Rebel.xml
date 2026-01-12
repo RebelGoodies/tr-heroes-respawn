@@ -120,6 +120,27 @@
 		<Reward_Param2>Yavin</Reward_Param2>
 		<Prereq>Universal_Story_Start</Prereq>
 	 </Event>
-
+	 
+	<Event Name="Remove_Dark_Luke">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Luke_Skywalker_Darkside</Reward_Param1>
+		<Prereq>Luke_Returns</Prereq>
+	</Event>
+	
+	
+	<Event Name="Luke_Skywalker_Jedi_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Luke_Skywalker_Jedi_Team</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+	</Event>
+	
+	<Event Name="Remove_Luke_Skywalker_Jedi">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Luke_Skywalker_Jedi_Team</Reward_Param1>
+		<Prereq>Luke_Skywalker_Jedi_Team_Dies</Prereq>
+	</Event>
 	
 </Story>

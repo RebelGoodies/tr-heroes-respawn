@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+
+<Story>
+	
+	<!-- Executor Hero - 210 pop -->
+	
+	<Event Name="Reaper_Kaine_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Reaper_Kaine</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Reaper_Kaine">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Reaper_Kaine</Reward_Param1>
+		<Prereq>Reaper_Kaine_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Vengeance Hero - 170 pop -->
+	
+	<Event Name="Vengeance_Jerec_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Vengeance_Jerec</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Vengeance_Jerec">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Vengeance_Jerec</Reward_Param1>
+		<Prereq>Vengeance_Jerec_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<!-- Praetor Hero - 106 pop -->
+	
+	<Event Name="Dekeet_Praetor_Dies">
+  		<Event_Type>STORY_TACTICAL_DESTROY</Event_Type>
+  		<Event_Param1>Dekeet_Praetor</Event_Param1>
+		<Event_Param2/>
+		<Event_Param3>1</Event_Param3>
+		<Perpetual>true</Perpetual>
+	</Event>
+	
+	<Event Name="Remove_Dekeet_Praetor">
+		<Event_Type>STORY_TRIGGER</Event_Type>
+		<Reward_Type>REMOVE_UNIT</Reward_Type>
+		<Reward_Param1>Dekeet_Praetor</Reward_Param1>
+		<Prereq>Dekeet_Praetor_Dies</Prereq>
+		<Perpetual>true</Perpetual>
+	</Event>
+
+</Story>

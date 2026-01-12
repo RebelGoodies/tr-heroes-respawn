@@ -96,9 +96,12 @@ return {
             }
 
             for _, object in pairs(self.DespawnList) do
-                checkObject = Find_First_Object(object)
+                checkObject = Find_First_Object(object) -- doesn't work if hero respawning
                 if TestValid(checkObject) then
                     checkObject.Despawn()
+				else
+					Story_Event("ERA_SIX_START") -- Manual xml removal
+					break
                 end
             end
 

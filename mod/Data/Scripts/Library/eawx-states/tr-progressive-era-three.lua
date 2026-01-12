@@ -64,9 +64,12 @@ return {
 			Story_Event("REMOVE_DLARIT")
 			
             for _, object in pairs(self.DespawnList) do
-                local checkObject = Find_First_Object(object)
+                local checkObject = Find_First_Object(object) -- doesn't work if hero respawning
                 if TestValid(checkObject) then
                     checkObject.Despawn()
+				else
+					Story_Event("ERA_THREE_START") -- Manual xml removal
+					break
                 end
             end
             
