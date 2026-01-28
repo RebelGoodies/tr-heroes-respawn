@@ -13,12 +13,12 @@ This can be toggled on and off at any time through buttons in the *Advanced Opti
 
 - Subsequent deaths by the same hero will increase their respawn time by **10%** each time.
 - Any special respawns remain unchanged.
-- All Imperial regime heroes will remain, even when progressing through regimes.
+- All Imperial regime heroes will stay, even when progressing through regimes.
 
 ### Exceptions to respawn
 
 - Any hero over **120 pop** is excluded, along with Super Star Destroyer (SSD) heroes.
-- If a warlord faction gets integrated, their heroes that were not alive at that moment are gone.
+- If a warlord faction gets integrated, their heroes not alive at that moment are gone.
 
 ### Recruitable heroes
 
@@ -27,11 +27,14 @@ This can be toggled on and off at any time through buttons in the *Advanced Opti
 - All the random pirates can be hired by the Hutt Cartels and Zsinj's Empire.
 - New Republic recruitable commanders follow the same respawn rules.
   When one dies, their slot is effectively suspended until they respawn.
-- Extra New Republic slots can be purchased for **200 credits** each time. Use the blue rebel button labeled **"Increase max staff."**
+- Extra New Republic staff slots can be purchased for **200 credits** each time.
+  Use the blue rebel button that says **"Increase max staff."**
 
 ### Infinities
 
 Heroes spawn at the beginning of Custom GC and FTGU single-planet start games (all players), matching the selected era.
+
+--
 
 # License
 
