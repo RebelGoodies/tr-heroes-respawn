@@ -9,8 +9,34 @@ MercRecruitment = class()
 
 function MercRecruitment:new(gc)
 	self.RecruitmentTables = require("MercRecruitmentLibrary")
+	self:replace_tech_names() --Submod
 
 	gc.Events.GalacticProductionFinished:attach_listener(self.on_production_finished, self)
+end
+
+---Custom submod XML tech name replacements
+function MercRecruitment:replace_tech_names()
+	for pool_name, pool in pairs(self.RecruitmentTables) do
+		local tech_name = pool.BuildDummyName
+		local tech_alt = tech_name.."_2"
+		if Find_Object_Type(tech_alt) then
+			for _, faction in pairs(pool.RecruiterOptions) do
+				local player = Find_Player(faction)
+				player.Lock_Tech(Find_Object_Type(tech_name))
+				player.Unlock_Tech(Find_Object_Type(tech_alt))
+			end
+			self.RecruitmentTables[tech_alt] = self.RecruitmentTables[pool_name]
+			self.RecruitmentTables[tech_alt].BuildDummyName = tech_alt
+		end
+	end
+end
+
+function MercRecruitment:is_merc_tech(tech_name)
+	for _, pool in pairs(self.RecruitmentTables) do
+		if tech_name == pool.BuildDummyName then
+			return true
+		end
+	end
 end
 
 function MercRecruitment:update()
@@ -81,7 +107,7 @@ function MercRecruitment:candidate_pool_refresh(pool_name)
 end
 
 function MercRecruitment:on_production_finished(planet, object_type_name)
-	if object_type_name ~= "RANDOM_MERCENARY" and object_type_name ~= "RANDOM_BOUNTY_HUNTER" then
+	if not self:is_merc_tech(object_type_name) then
 		return
 	end
 	

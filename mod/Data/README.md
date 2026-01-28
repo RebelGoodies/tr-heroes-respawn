@@ -1,17 +1,16 @@
-# Heroes Respawn (TR 3.4)
+# Heroes Respawn (TR 3.5)
 
 ## How to launch this mod
 
-1. Download Thrawns Revenge 3.4 from ModDB and extract it to your Mods folder as `TR34`.
-   - https://www.moddb.com/mods/thrawns-revenge/downloads/steam-thrawns-revenge-34
+1. Download Thrawns Revenge 3.5 from ModDB and extract it to your Mods folder as `TR35`.
+   - https://www.moddb.com/mods/thrawns-revenge/downloads/steam-thrawns-revenge-35
 
-2. Create a new folder in the Mods folder called `Respawn`, place `Data3.4` into it, and rename it to `Data`.
+2. Create a new folder in the Mods folder called `Respawn`, place `Data3.5` into it, and rename it to `Data`.
    - Example path: `C:\Program Files (x86)\Steam\steamapps\common\Star Wars Empire at War\corruption\Mods\Respawn\Data`
 
 3. Set launch options:
-
 ```
-ModPath=Mods\Respawn ModPath=Mods\TR34
+ModPath=Mods\Respawn ModPath=Mods\TR35
 ```
 
 ---
@@ -27,21 +26,22 @@ This can be toggled on and off at any time through buttons in the *Advanced Opti
 
 - Subsequent deaths by the same hero will increase their respawn time by **10%** each time.
 - Any special respawns remain unchanged.
-- All Imperial regime heroes will remain, even when progressing through regimes.
+- All Imperial regime heroes will stay, even when progressing through regimes.
 
 ### Exceptions to respawn
 
 - Any hero over **120 pop** is excluded, along with Super Star Destroyer (SSD) heroes.
-- If a warlord faction gets integrated, their heroes that were not alive at that moment are gone.
+- If a warlord faction gets integrated, their heroes not alive at that moment are gone.
 
 ### Recruitable heroes
 
-- **NEW:** Regional and Historical staff heroes are available for the New Republic and Galactic Empire in non-historical modes.
+- Regional and Historical staff heroes are available for the New Republic and Galactic Empire in non-historical modes.
 - Imperial players may recruit multiple bounty hunters instead of only one.
 - All the random pirates can be hired by the Hutt Cartels and Zsinj's Empire.
 - New Republic recruitable commanders follow the same respawn rules.
   When one dies, their slot is effectively suspended until they respawn.
-- Extra New Republic slots can be purchased for **200 credits** each time. Use the blue rebel button labeled **"Increase max staff."**
+- Extra New Republic staff slots can be purchased for **200 credits** each time.
+  Use the blue rebel button that says **"Increase max staff."**
 
 ### Infinities
 

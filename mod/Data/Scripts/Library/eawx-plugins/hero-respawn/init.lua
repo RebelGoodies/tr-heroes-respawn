@@ -21,11 +21,13 @@
 
 require("deepcore/std/plugintargets")
 require("eawx-plugins/hero-respawn/HeroRespawn")
+require("eawx-plugins/respawn-handler/RespawnHandler")
 
 return {
     target = PluginTargets.never(),
     init = function(self, ctx)
         local galactic_conquest = ctx.galactic_conquest
+        RespawnHandler(galactic_conquest, ctx.id)
         return HeroRespawn(galactic_conquest.Events.GalacticHeroKilled, galactic_conquest.HumanPlayer)
     end
 }

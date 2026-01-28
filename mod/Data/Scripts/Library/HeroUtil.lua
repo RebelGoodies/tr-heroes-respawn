@@ -63,13 +63,13 @@ end
 ---@return string swap
 function warlord_check(hero_id, owner)
 	local swap = hero_id
-	if hero_id == "DELVARDUS_BRILLIANT" and owner == "ERIADU_AUTHORITY" then
-		swap = "DELVARDUS_THALASSA"
-	elseif hero_id == "TREUTEN_CRIMSON_SUNRISE" and owner == "GREATER_MALDROOD" then
-		swap = "TREUTEN_13X"
-	elseif hero_id == "TYBER_ZANN_TEAM2" and owner == "ZSINJ_EMPIRE" then
-		swap = "TYBER_ZANN_TEAM"
-	end
+	-- if hero_id == "DELVARDUS_BRILLIANT" and owner == "ERIADU_AUTHORITY" then
+	-- 	swap = "DELVARDUS_THALASSA"
+	-- elseif hero_id == "TREUTEN_CRIMSON_SUNRISE" and owner == "GREATER_MALDROOD" then
+	-- 	swap = "TREUTEN_13X"
+	-- elseif hero_id == "TYBER_ZANN_TEAM2" and owner == "ZSINJ_EMPIRE" then
+	-- 	swap = "TYBER_ZANN_TEAM"
+	-- end
 	return swap
 end
 

@@ -14,7 +14,7 @@ return {
 	-- ["Alpha_Squadron"] = {"Maarek_Stele_Alpha"},
 	-- ["Obsidian_Squadron"] = {"Cive_Rashon"}, --Legitimacy
 
-	["Han_Solo_Team"] = {"Millennium_Falcon", {"Han_Solo", "Chewbacca", "Solo_Remonda", "Han_Intrepid"}}, --Han solo and Chewbacca deaths not detected in ground battles.
+	["Han_Solo_Team"] = {"MillenniumFalcon", {"Han_Solo", "Chewbacca", "Han_Solo_Mon_Remonda", "Han_Solo_Intrepid"}}, --Han solo and Chewbacca deaths not detected in ground battles.
 	-- ["Smuggler_Preybird_Squadron_Half"] = {},
 	-- ["Salm_Y-Wing_Squadron"] = {"Salm_Y-Wing", {"Salm_B-Wing", "Salm_K-Wing"}},
 	-- ["Salm_B-Wing_Squadron"] = {"Salm_B-Wing", {"Salm_Y-Wing", "Salm_K-Wing"}},

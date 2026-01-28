@@ -21,6 +21,8 @@ function RespawnHandler:new(gc, id)
 	self.squadrons_inited = false
 	self.human_respawn = true
 	self.ai_respawn = true
+
+	---@type number|nil
 	self.time_override = nil --debug
 
 	---@type PlayerObject|nil
@@ -39,7 +41,12 @@ function RespawnHandler:new(gc, id)
 	self.omit_list = {}       
 
 	---["FACTION"] = {["squadron_name"] = {"hero_fighter", {"exclude_if_alive"}, was_alive, has_died}}
-	---@type table<string, table<string, string|string[]|boolean>>
+	---@class RespawnSquadronInfo
+	---@field hero_fighter string
+	---@field exclude_if_alive string[]
+	---@field was_alive boolean
+	---@field has_died boolean
+	---@type table<string, table<string, RespawnSquadronInfo>>
 	self.squadrons = {}
 	
 	--Format tables to have all factions. Prevents crashes from faction not being there.
@@ -61,10 +68,25 @@ function RespawnHandler:new(gc, id)
 			end
 		end
 	end
-	
-	self:add_to_omit("DELVARDUS_THALASSA", "ERIADU_AUTHORITY")
-	self:add_to_omit("TREUTEN_13X", "GREATER_MALDROOD")
-	self:add_to_omit("TYBER_ZANN_TEAM", "ZSINJ_EMPIRE")
+
+	---[HERO_UNIT] = {FACTIONS}
+	---@type table<string, string[]>
+	local built_in_respawn = {
+		["DELVARDUS_THALASSA"] = {"ERIADU_AUTHORITY"},
+		["TREUTEN_13X"] = {"GREATER_MALDROOD"},
+		["TYBER_ZANN_MERCILESS"] = {"ZSINJ_EMPIRE"},
+		["ZSINJ_IRON_FIST_VSD"] = {"ZSINJ_EMPIRE"},
+		["THRAWN_GREY_WOLF"] = {"EMPIREOFTHEHAND"},
+		["FRAAN_GLORY"] = {}, --any faction
+		["JENN_TEAM"] = {}, --any faction
+		["JAALIB_BRANDL_PROTECTORATE_I"] = {"REBEL"},
+	}
+
+	for hero_unit, faction_list in pairs(built_in_respawn) do
+		for _, faction in pairs(faction_list) do
+			self:add_to_omit(hero_unit, faction)
+		end
+	end
 	
 	---@type table<string, table<string, table<string, string|boolean>>>
 	self.regime_sets = require("eawx-mod-icw/spawn-sets/EmpireProgressSet")
@@ -102,14 +124,13 @@ function RespawnHandler:init()
 		else
 			self.human_player.Unlock_Tech(Find_Object_Type("OPTION_AI_RESPAWN_ON"))
 		end
-		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
 		--if self.id == "PROGRESSIVE" then
 		--	self.human_player.Unlock_Tech(Find_Object_Type("OPTION_REGIME_NO_DESPAWN"))
 		--end
 	end
 	
 	if self.id == "PROGRESSIVE" then
-		self:regime_check()
+		-- self:regime_check()
 	end
 	
 	self:squadron_check()
@@ -265,57 +286,6 @@ function try_respawn(args)
 	end
 end
 
----@param object_type_name string
----@return integer
-function RespawnHandler:check_available_staff(object_type_name)
-	local views = {
-		["VIEW_ADMIRALS"] = 1,
-		["VIEW_GENERALS"] = 2,
-		["VIEW_COUNCIL"] = 3
-	}
-	local set = views[object_type_name]
-	if set and self.locked_increase then
-		local systems = {admiral_data, general_data, council_data}
-		local hero_data = systems[set]
-		if hero_data then
-			if table.getn(hero_data.available_list) > hero_data.free_hero_slots then
-				self.human_player.Unlock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
-				self.locked_increase = false
-			end
-		end
-	end
-	return set
-end
-
----@param set integer
----@param amount integer
----@return boolean
-function RespawnHandler:rep_staff_increase(set, amount)
-	if not amount then
-		amount = 1
-	end
-	
-	local systems = {admiral_data, general_data, council_data}
-	local names = {"Admiral", "General", "Jedi"}
-	local hero_data = systems[set]
-	
-	if hero_data then
-		if table.getn(hero_data.available_list) > hero_data.free_hero_slots then
-			StoryUtil.ShowScreenText("Total "..tostring(names[set]).." Slots: "..hero_data.total_slots+1, 3, nil, {r = 88, g = 222, b = 44})
-			crossplot:publish("NR_ADMIRAL_DECREMENT", -amount, set)
-			Lock_Hero_Options(hero_data)
-			Unlock_Hero_Options(hero_data)
-			Get_Active_Heroes(false, hero_data)
-		else
-			StoryUtil.ShowScreenText("Total "..tostring(names[set]).." Slots: "..hero_data.total_slots, 3, nil, {r = 66, g = 190, b = 33})
-			return true
-		end
-	else
-		crossplot:publish("NR_ADMIRAL_DECREMENT", -amount, set)
-	end
-	return false
-end
-
 ---@param planet Planet
 ---@param object_type_name string
 function RespawnHandler:on_construction_finished(planet, object_type_name)
@@ -328,23 +298,8 @@ function RespawnHandler:on_construction_finished(planet, object_type_name)
 		self.isard_ssd_owner = nil
 		return
 	end
-
-	if object_type_name == "OPTION_INCREASE_REP_STAFF" then
-		local slots_done = true
-		for i = 1, 3 do
-			if not self:rep_staff_increase(i) then
-				slots_done = false
-			end
-		end
-		if slots_done then
-			self.human_player.Lock_Tech(Find_Object_Type("OPTION_INCREASE_REP_STAFF"))
-			self.locked_increase = true
-		end
-		
-	elseif self:check_available_staff(object_type_name) then
-		return
 	
-	elseif object_type_name == "OPTION_RESPAWN_ON" then
+	if object_type_name == "OPTION_RESPAWN_ON" then
 		self.human_respawn = true
 		self.human_player.Lock_Tech(Find_Object_Type("OPTION_RESPAWN_ON"))
 		self.human_player.Unlock_Tech(Find_Object_Type("OPTION_RESPAWN_OFF"))
