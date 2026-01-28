@@ -243,7 +243,7 @@ function HeroesManager:add_rep_heroes()
     local admiral_data = self.RepHeroes.library["ADMIRAL"]
     if admiral_data and admiral_data.full_list and admiral_data.available_list then
         for tag, entry in pairs({
-            -- ["Karrde"] = {"Talon_Karrde_Assign", {"Talon_Karrde_Wild_Karrde"}, "Talon Karrde"}, --Smugglers' Alliance
+            ["Karrde"] = {"TALON_KARRDE_ASSIGN", {"TALON_KARRDE_WILD_KARRDE"}, "Talon Karrde"}, --Smugglers' Alliance
             ["Slixike"] = {"SLIXIKE_ASSIGN", {"SLIXIKE"}, "S'lixike"},
             ["Standish"] = {"STANDISH_ASSIGN", {"STANDISH_AAF2"}, "Anton Standish"},
             ["Rogriss"] = {"ROGRISS_ASSIGN", {"ROGRISS_ASSUAGER"}, "Teren Rogriss"},
@@ -269,7 +269,7 @@ function HeroesManager:add_rep_heroes()
 
     local jedi_data = self.RepHeroes.library["JEDI"]
     if jedi_data and jedi_data.full_list and jedi_data.available_list then
-        jedi_data.full_list["Zuma"] = {"ZUMA_ASSIGN",{"MANDER_ZUMA"},"Mander Zuma", ["Companies"] = {"ZUMA_TEAM"}} --
+        jedi_data.full_list["Mander"] = {"ZUMA_ASSIGN",{"MANDER_ZUMA"},"Mander Zuma", ["Companies"] = {"ZUMA_TEAM"},["Locked"] = false}
         table.insert(jedi_data.available_list, "Mander")
         self:validate_hero_data_table(jedi_data)
     end
