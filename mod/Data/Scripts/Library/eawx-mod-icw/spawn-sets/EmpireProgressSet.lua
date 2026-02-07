@@ -98,7 +98,7 @@ return {
     ["DAALA"] = {
         ["CAULDRON_NEBULA"] = {
             {object = "Daala_Gorgon", override = nil, progress = true, remove = false},
-            {object = "Odosk_Team", override = "Odosk", progress = true, remove = false},
+            {object = "Odosk_Team", override = "Odosk_AT_AT_Walker", progress = true, remove = false},
         },
         ["CARIDA"] = {
             {object = "Ardax_Vendetta", override = nil, progress = true, remove = false},

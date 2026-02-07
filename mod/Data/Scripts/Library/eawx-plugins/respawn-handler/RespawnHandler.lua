@@ -8,6 +8,7 @@ require("HeroSystem")
 
 CONSTANTS = ModContentLoader.get("GameConstants")
 
+---@class RespawnHandler
 RespawnHandler = class()
 
 ---@param gc GalacticConquest

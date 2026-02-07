@@ -9,4 +9,3 @@ return {
         return RespawnHandler(galactic_conquest, ctx.id)
     end
 }
- 
