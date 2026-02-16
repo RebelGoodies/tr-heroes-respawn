@@ -333,18 +333,12 @@ function HeroesManager:enable_sandbox_for_all()
 end
 
 function HeroesManager:enable_fighter_sandbox()
-    -- Must be in Title_Case
-    local fighter_assigns = {
-        "Taldira_Location_Set",
-        "Wedge_Rogues_Location_Set",
-        "Tycho_Rogues_Location_Set",
-        "Wedge_Wraith_Location_Set",
-        "Salm_Location_Set",
-        "Ranulf_Trommer_Location_Set",
-        "Jake_Farrell_Location_Set",
-        "Alexandra_Winger_Location_Set",
-    }
-    for _, location_set in ipairs(fighter_assigns) do
-        self.RepHeroes:Add_Fighter_Set(location_set)
+    local all_entries = Get_Hero_Entries()
+    for fighter_set, _ in pairs(all_entries) do
+        local obj_type = Find_Object_Type(fighter_set)
+        if TestValid(obj_type) and obj_type.Is_Affiliated_With(Find_Player("Rebel")) then
+            StoryUtil.ShowScreenText("Adding Fighter Set: " .. fighter_set, 3, nil, {r=88, g=222, b=44})
+            self.RepHeroes:Add_Fighter_Set(fighter_set)
+        end
     end
 end
