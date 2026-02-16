@@ -1,3 +1,5 @@
+---@License: MIT
+
 require("PGStoryMode")
 require("eawx-util/ChangeOwnerUtilities")
 StoryUtil = require("eawx-util/StoryUtil")
