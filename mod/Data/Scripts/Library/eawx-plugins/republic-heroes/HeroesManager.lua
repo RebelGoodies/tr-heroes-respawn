@@ -29,10 +29,9 @@ function HeroesManager:new(gc, id, human_player, RepHeroes)
 
     if self.id ~= "HISTORICAL" and self.id ~= "DEFAULT" then
         if self.human_player == Find_Player("Rebel") then
-            -- UnitUtil.SetLockList("Rebel", {
-            --     "Ackbar_Guardian_Upgrade",
-            --     "Ackbar_Guardian_Upgrade2"
-            -- }, true)
+            UnitUtil.SetLockList("Rebel", {
+                "OPTION_REP_HEROES_SANDBOX",
+            }, true)
             self:add_rep_heroes()
         end
         if self.remnant_data.active_player.Is_Human() then
@@ -71,6 +70,11 @@ function HeroesManager:on_production_finished(planet, object_type_name)
             Enable_Hero_Options(self.remnant_data)
             Show_Hero_Info(self.remnant_data)
         end
+    elseif object_type_name == "OPTION_REP_HEROES_SANDBOX" then
+        self:enable_sandbox_for_all()
+        self:enable_fighter_sandbox()
+        self.sandbox_mode = true
+
     else
         Handle_Build_Options(object_type_name, self.remnant_data)
     end
@@ -128,8 +132,8 @@ function HeroesManager:rep_staff_increase(amount)
     end
 end
 
----@param planet any
----@param object_type_name any
+---@param planet Planet
+---@param object_type_name string
 ---@return boolean was_upgrade
 function HeroesManager:handle_custom_upgrades(planet, object_type_name)
     custom_upgrades = {
@@ -237,6 +241,7 @@ function HeroesManager:define_remnant_data()
     end
 end
 
+---Adds extra heroes to the Republic command staff
 function HeroesManager:add_rep_heroes()
     if not self.RepHeroes.library then
         return
@@ -308,5 +313,38 @@ function HeroesManager:validate_hero_data_table(hero_data)
             debug_text = "BadTag: " .. tag .. debug_text
             StoryUtil.ShowScreenText(debug_text, 15, nil, {r=225, g=150, b=20})
         end
+    end
+end
+
+---Unlock every option no matter the era, including dead staff.
+function HeroesManager:enable_sandbox_for_all()
+    if not self.RepHeroes.library then
+        return
+    end
+    self.RepHeroes:New_Jedi_Order_Init()
+    for library_name, hero_data in pairs(self.RepHeroes.library) do
+        for tag, entry in pairs(hero_data.full_list) do
+            Handle_Hero_Add(tag, hero_data)
+        end
+        hero_data.vacant_hero_slots = 0
+        hero_data.vacant_limit = 0
+        GlobalValue.Set(hero_data.extra_name.."_SANDBOX", true)
+    end
+end
+
+function HeroesManager:enable_fighter_sandbox()
+    -- Must be in Title_Case
+    local fighter_assigns = {
+        "Taldira_Location_Set",
+        "Wedge_Rogues_Location_Set",
+        "Tycho_Rogues_Location_Set",
+        "Wedge_Wraith_Location_Set",
+        "Salm_Location_Set",
+        "Ranulf_Trommer_Location_Set",
+        "Jake_Farrell_Location_Set",
+        "Alexandra_Winger_Location_Set",
+    }
+    for _, location_set in ipairs(fighter_assigns) do
+        self.RepHeroes:Add_Fighter_Set(location_set)
     end
 end

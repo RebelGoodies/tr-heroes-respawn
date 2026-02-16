@@ -406,6 +406,12 @@ function Handle_Hero_Exit(hero_tag, hero_data, story_locked)
 		StoryUtil.ShowScreenText(hero_tag .. " not found in option list to exit", 5, nil, {r = 255, g = 0, b = 0})
 		return
 	end
+
+	-- Do nothing if sandbox mode is active
+	---@type boolean
+	if GlobalValue.Get(hero_data.extra_name.."_SANDBOX") then
+		return
+	end
 	
 	local customs = Find_First_Object("Custom_GC_Starter_Dummy") --It doesn't play nicely with the hero setup phase
 	local hero_found = false

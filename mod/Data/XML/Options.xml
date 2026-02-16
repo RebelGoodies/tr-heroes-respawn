@@ -263,6 +263,26 @@
 		<Build_Limit_Lifetime_Per_Player>20</Build_Limit_Lifetime_Per_Player>
 	</DummyStructure>
 
+	<DummyStructure Name="Option_Rep_Heroes_Sandbox">
+		<Variant_Of_Existing_Type>Template_Option</Variant_Of_Existing_Type>
+		
+		<Text_ID>Hero Sandbox Mode</Text_ID>
+		<Encyclopedia_Text>
+		Sandbox mode: Unlock every single hero staff option no
+		matter the era，including dead staff and hero squadrons.
+		Cannot be undone. Applies to the New Republic.
+		</Encyclopedia_Text>
+		<Encyclopedia_Unit_Class> TEXT_ENCYCLOPEDIA_CLASS_OPTIONS </Encyclopedia_Unit_Class>
+		
+		<Icon_Name>i_button_jedi_temple.tga</Icon_Name>
+
+		<Build_Initially_Locked>Yes</Build_Initially_Locked>
+		<Build_Cost_Credits>1</Build_Cost_Credits>
+		<Build_Time_Seconds>8</Build_Time_Seconds>
+
+		<Build_Limit_Lifetime_Per_Player>1</Build_Limit_Lifetime_Per_Player>
+	</DummyStructure>
+
 	<!-- Modified objects -->
 
 	<DummyStructure Name="Random_Bounty_Hunter_2">
