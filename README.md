@@ -29,12 +29,13 @@ This can be toggled on and off at any time through buttons in the *Advanced Opti
   When one dies, their slot is effectively suspended until they respawn.
 - Extra New Republic staff slots can be purchased for **200 credits** each time.
   Use the blue rebel button that says **"Increase max staff."**
+- **Sandbox mode:** Unlock every single New Republic staff option no matter the era, including dead staff and hero squadrons. Cannot be undone.
 
 ### Infinities
 
 Heroes spawn at the beginning of Custom GC and FTGU single-planet start games (all players), matching the selected era.
 
---
+---
 
 # License
 
