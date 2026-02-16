@@ -7,44 +7,44 @@
 --
 return { --Mostly Executor type SSD
     ["EMPIRE"] = {
-		"Lusankya",
-		"Daala_Knight_Hammer",
-		"Pellaeon_Reaper",
-		"Kiez_Whelm",
-		"Drommel_Guardian", --Legitimacy
-		"Grunger_Aggressor", --Legitimacy
-		},
+        "Lusankya",
+        "Daala_Knight_Hammer",
+        "Pellaeon_Reaper",
+        "Kiez_Whelm",
+        "Drommel_Guardian", --Legitimacy
+        "Grunger_Aggressor", --Legitimacy
+        },
     ["REBEL"] = {
-		"Ackbar_Guardian",
-		"Wedge_Lusankya",
-	},
+        "Ackbar_Guardian",
+        "Wedge_Lusankya",
+    },
     ["EMPIREOFTHEHAND"] = {},
     ["GREATER_MALDROOD"] = {
-		"Drommel_Guardian", --Legitimacy
-		"Grunger_Aggressor", --Legitimacy
-	},
+        "Drommel_Guardian", --Legitimacy
+        "Grunger_Aggressor", --Legitimacy
+    },
     ["PENTASTAR"] = {
-		"Reaper_Kaine",
-		"Drommel_Guardian", --Legitimacy
-		"Grunger_Aggressor", --Legitimacy
-	},
+        "Reaper_Kaine",
+        "Drommel_Guardian", --Legitimacy
+        "Grunger_Aggressor", --Legitimacy
+    },
     ["ERIADU_AUTHORITY"] = {
-		"Drommel_Guardian", --Legitimacy
-		"Grunger_Aggressor", --Legitimacy
-	},
+        "Drommel_Guardian", --Legitimacy
+        "Grunger_Aggressor", --Legitimacy
+    },
     ["ZSINJ_EMPIRE"] = {
-		"Razors_Kiss",
-		"Iron_Fist",
-		"Drommel_Guardian", --Legitimacy
-		"Grunger_Aggressor", --Legitimacy
-	},
-	["CORPORATE_SECTOR"] = {},
-	["HAPES_CONSORTIUM"] = {},
+        "Razors_Kiss",
+        "Iron_Fist",
+        "Drommel_Guardian", --Legitimacy
+        "Grunger_Aggressor", --Legitimacy
+    },
+    ["CORPORATE_SECTOR"] = {},
+    ["HAPES_CONSORTIUM"] = {},
     ["YEVETHA"] = {
-		"Bille_Pride",
-		"Spaar_Aramadia_SSD",
-	},
-	["WARLORDS"] = {
-		"X1_Executor",
-	},
+        "Bille_Pride",
+        "Spaar_Aramadia_SSD",
+    },
+    ["WARLORDS"] = {
+        "X1_Executor",
+    },
 }
