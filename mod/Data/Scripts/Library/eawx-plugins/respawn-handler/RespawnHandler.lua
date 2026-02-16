@@ -52,6 +52,10 @@ function RespawnHandler:new(gc, id)
     ---@type table<string, table<string, RespawnSquadronInfo>>
     self.squadrons = {}
 
+    --Fill omit_list
+    ---@type string[]
+    local exceptions = require("RespawnExceptions")
+
     --Format tables to have all factions. Prevents crashes from faction not being there.
     ---@type string[]
     local all_factions = CONSTANTS.ALL_FACTIONS
@@ -59,14 +63,8 @@ function RespawnHandler:new(gc, id)
         self.respawning_list[faction] = {}
         self.omit_list[faction] = {}
         self.squadrons[faction] = require("HeroSquadronList")
-    end
-
-    --Fill omit_list
-    ---@type table<string, string[]>
-    local exceptions = require("RespawnExceptions")
-    if exceptions then
-        for faction, hero_list in pairs(exceptions) do
-            for _, hero_id in pairs(hero_list) do
+        if exceptions then
+            for _, hero_id in pairs(exceptions) do
                 self.omit_list[faction][string.upper(hero_id)] = true
             end
         end
@@ -139,7 +137,7 @@ function RespawnHandler:init()
     self:squadron_check()
 end
 
----DEPRECATED
+---@deprecated
 ---Check every cycle
 ---@param args any
 function squadron_loop(args)
