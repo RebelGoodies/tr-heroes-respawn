@@ -257,20 +257,28 @@ function HeroesManager:add_rep_heroes()
             ["Yonka"] = {"YONKA_ASSIGN", {"YONKA_FREEDOM"}, "Sair Yonka"},
         }) do
             admiral_data.full_list[tag] = entry
-            table.insert(admiral_data.available_list, tag)
             self:validate_hero_data_table(admiral_data)
+        end
+        for i, tag in ipairs({"Slixike", "Standish", "Rogriss", "Yonka"}) do
+            table.insert(admiral_data.available_list, tag)
         end
     end
 
     local army_data = self.RepHeroes.library["ARMY"]
     if army_data and army_data.full_list and army_data.available_list then
         for tag, entry in pairs({
+            ["Mothma"] = {"MON_MOTHMA_ASSIGN",{"MON_MOTHMA"},"Mon Mothma", ["Companies"] = {"MON_MOTHMA_TEAM"}},
+            ["Gavrisom"] = {"GAVRISOM_ASSIGN",{"GAVRISOM"},"Gavrisom", ["Companies"] = {"GAVRISOM_TEAM"}},
             ["Alinda"] = {"ALINDA_ASSIGN",{"ALINDA_SOLARIS"},"Alinda Solaris", ["Companies"] = {"SOLARIS_TEAM"}},
+            ["Leia"] = {"PRINCESS_LEIA_ASSIGN", {"PRINCESS_LEIA"}, "Princess Leia", ["Companies"] = {"PRINCESS_LEIA_TEAM"}},
             ["Mirax"] = {"MIRAX_ASSIGN",{"MIRAX"},"Mirax Terrik", ["Companies"] = {"MIRAX_TEAM"}},
+            ["Shysa"] = {"FENN_SHYSA_ASSIGN", {"FENN_SHYSA"},"Fenn Shysa", ["Companies"] = {"FENN_SHYSA_TEAM"}},
         }) do
             army_data.full_list[tag] = entry
-            table.insert(army_data.available_list, tag)
             self:validate_hero_data_table(army_data)
+        end
+        for i, tag in ipairs({"Alinda", "Mirax"}) do
+            table.insert(army_data.available_list, tag)
         end
     end
 

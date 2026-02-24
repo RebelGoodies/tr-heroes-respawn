@@ -631,6 +631,42 @@
 
 	<!-- Army -->
 
+	<DummyStructure Name="Mon_Mothma_Assign">
+		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
+
+		<Text_ID>TEXT_HERO_MON_MOTHMA</Text_ID>
+		<Icon_Name>I_BUTTON_MON_MOTHMA_ADMIN.tga</Icon_Name>
+
+		<SFXEvent_Build_Complete>Unit_Respawn_Mothma</SFXEvent_Build_Complete>
+
+		<Affiliation>Rebel</Affiliation>
+
+		<Encyclopedia_Text>
+		TEXT_TOOLTIP_SEPARATOR_TRAITS_BLOCK
+		TEXT_TOOLTIP_TRAIT_ADMIN_TIER_CHIEF_OF_STATE
+		TEXT_TOOLTIP_SEPARATOR_BIO_BLOCK 
+		TEXT_TOOLTIP_MON_MOTHMA_01
+		</Encyclopedia_Text>
+	</DummyStructure>
+
+	<DummyStructure Name="Gavrisom_Assign">
+		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
+
+		<Text_ID>TEXT_HERO_GAVRISOM</Text_ID>
+		<Icon_Name>I_BUTTON_GAVRISOM_ADMIN.tga</Icon_Name>
+
+		<SFXEvent_Build_Complete>Unit_Respawn_Mothma</SFXEvent_Build_Complete>
+
+		<Affiliation>Rebel</Affiliation>
+
+		<Encyclopedia_Text>
+		TEXT_TOOLTIP_SEPARATOR_TRAITS_BLOCK
+		TEXT_TOOLTIP_TRAIT_ADMIN_TIER_CHIEF_OF_STATE
+		TEXT_TOOLTIP_SEPARATOR_BIO_BLOCK
+		TEXT_TOOLTIP_GAVRISOM
+		</Encyclopedia_Text>
+	</DummyStructure>
+
 	<DummyStructure Name="Alinda_Assign">
 		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
 
@@ -652,6 +688,34 @@
 		</Encyclopedia_Text>
 	</DummyStructure>
 
+	<DummyStructure Name="Princess_Leia_Assign">
+		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
+
+		<Text_ID>TEXT_HERO_PRINCESS_LEIA</Text_ID>
+		<Icon_Name>I_BUTTON_PRINCESS_LEIA_ADMIN.tga</Icon_Name>
+
+		<SFXEvent_Build_Complete>Unit_Select_Leia_Organa</SFXEvent_Build_Complete>
+
+		<Affiliation>Rebel</Affiliation>
+
+		<Encyclopedia_Text>
+		TEXT_TOOLTIP_SEPARATOR_TRAITS_BLOCK
+		TEXT_TOOLTIP_TRAIT_ADMIN_TIER_SENATOR
+		TEXT_TOOLTIP_TRAIT_COMMAND_FORCE_SENSITIVE
+		TEXT_TOOLTIP_TRAIT_UTILITY_PARTISAN_RECRUITER
+		TEXT_TOOLTIP_SEPARATOR_BIO_BLOCK
+		TEXT_TOOLTIP_LEIA
+		TEXT_TOOLTIP_SEPARATOR_ESCORTS_BLOCK
+		TEXT_TOOLTIP_ESCORT_LEIA_NOGHRI
+		</Encyclopedia_Text>
+
+		<Unit_Abilities_Data SubObjectList="Yes">
+			<Unit_Ability>
+				<Type>AREA_EFFECT_HEAL</Type>
+			</Unit_Ability>
+		</Unit_Abilities_Data>
+	</DummyStructure>
+
 	<DummyStructure Name="Mirax_Assign">
 		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
 
@@ -670,6 +734,25 @@
 		TEXT_TOOLTIP_MIRAX
 		TEXT_TOOLTIP_SEPARATOR_COMMANDS_BLOCK
 		TEXT_TOOLTIP_COMMAND_PULSAR_SKATE
+		</Encyclopedia_Text>
+	</DummyStructure>
+
+	<DummyStructure Name="Fenn_Shysa_Assign">
+		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
+
+		<Text_ID>TEXT_HERO_FENN_SHYSA</Text_ID>
+		<Icon_Name>I_BUTTON_FENN_SHYSA.tga</Icon_Name>
+
+		<SFXEvent_Build_Complete>Unit_Respawn_Mothma</SFXEvent_Build_Complete>
+
+		<Affiliation>Rebel</Affiliation>
+
+		<Encyclopedia_Text>
+		TEXT_TOOLTIP_SEPARATOR_TRAITS_BLOCK
+		TEXT_TOOLTIP_TRAIT_COMMAND_TIER_08_LAND
+		TEXT_TOOLTIP_TRAIT_SPECIALIZATION_SUBGROUP_LEADER_MANDO
+		TEXT_TOOLTIP_TRAIT_UTILITY_COOPERATIVE
+		TEXT_TOOLTIP_TRAIT_UTILITY_PARTISAN_RECRUITER
 		</Encyclopedia_Text>
 	</DummyStructure>
 
