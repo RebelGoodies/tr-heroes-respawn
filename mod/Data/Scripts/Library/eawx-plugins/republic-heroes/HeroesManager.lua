@@ -265,8 +265,8 @@ function HeroesManager:add_rep_heroes()
     local army_data = self.RepHeroes.library["ARMY"]
     if army_data and army_data.full_list and army_data.available_list then
         for tag, entry in pairs({
-            ["Alinda"] = {"ALINDA_ASSIGN",{"ALINDA_SOLARIS"},"Alinda", ["Companies"] = {"SOLARIS_TEAM"}},
-            ["Mirax"] = {"MIRAX_ASSIGN",{"MIRAX"},"Mirax", ["Companies"] = {"MIRAX_TEAM"}},
+            ["Alinda"] = {"ALINDA_ASSIGN",{"ALINDA_SOLARIS"},"Alinda Solaris", ["Companies"] = {"SOLARIS_TEAM"}},
+            ["Mirax"] = {"MIRAX_ASSIGN",{"MIRAX"},"Mirax Terrik", ["Companies"] = {"MIRAX_TEAM"}},
         }) do
             army_data.full_list[tag] = entry
             table.insert(army_data.available_list, tag)
