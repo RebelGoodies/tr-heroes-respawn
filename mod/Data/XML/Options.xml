@@ -758,6 +758,39 @@
 
 	<!-- Jedi -->
 
+	<DummyStructure Name="Luke_Skywalker_Assign">
+		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
+
+		<Text_ID>TEXT_HERO_LUKE_SKYWALKER</Text_ID>
+		<Icon_Name>I_BUTTON_LUKE_SKYWALKER.tga</Icon_Name>
+
+		<SFXEvent_Build_Complete>Unit_Select_Luke_Land</SFXEvent_Build_Complete>
+
+		<Affiliation>Rebel</Affiliation>
+
+		<Encyclopedia_Text>
+		TEXT_TOOLTIP_SEPARATOR_TRAITS_BLOCK
+		TEXT_TOOLTIP_TRAIT_COMMAND_TIER_08_LAND
+		TEXT_TOOLTIP_TRAIT_COMMAND_FORCE_SENSITIVE
+		TEXT_TOOLTIP_TRAIT_SPECIALIZATION_STARFIGHTER
+		TEXT_TOOLTIP_TRAIT_UTILITY_BEAST_TAMER
+		TEXT_TOOLTIP_TRAIT_UTILITY_STEALTH_OPERATIVE
+		TEXT_TOOLTIP_SEPARATOR_BIO_BLOCK
+		TEXT_TOOLTIP_LUKE_SKYWALKER_JEDI
+		TEXT_TOOLTIP_SEPARATOR_COMMANDS_BLOCK
+		TEXT_TOOLTIP_COMMAND_AA589
+		</Encyclopedia_Text>
+
+		<Unit_Abilities_Data SubObjectList="Yes"> 
+			 <Unit_Ability>
+				<Type>FORCE_CLOAK</Type>
+			</Unit_Ability>
+			<Unit_Ability>
+				<Type>SPRINT</Type>
+			</Unit_Ability>
+		</Unit_Abilities_Data>
+	</DummyStructure>
+
 	<DummyStructure Name="Zuma_Assign">
 		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
 

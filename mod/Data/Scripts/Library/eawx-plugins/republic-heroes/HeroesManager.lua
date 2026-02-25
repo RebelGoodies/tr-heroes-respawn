@@ -284,6 +284,7 @@ function HeroesManager:add_rep_heroes()
 
     local jedi_data = self.RepHeroes.library["JEDI"]
     if jedi_data and jedi_data.full_list and jedi_data.available_list then
+        jedi_data.full_list["Luke"] = {"LUKE_SKYWALKER_ASSIGN",{"LUKE_SKYWALKER_JEDI"},"Luke Skywalker", ["Companies"] = {"LUKE_SKYWALKER_JEDI_TEAM"}}
         jedi_data.full_list["Mander"] = {"ZUMA_ASSIGN",{"MANDER_ZUMA"},"Mander Zuma", ["Companies"] = {"ZUMA_TEAM"},["Locked"] = false}
         table.insert(jedi_data.available_list, "Mander")
         self:validate_hero_data_table(jedi_data)
