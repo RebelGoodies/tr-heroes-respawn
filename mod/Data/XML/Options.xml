@@ -691,8 +691,8 @@
 	<DummyStructure Name="Princess_Leia_Assign">
 		<Variant_Of_Existing_Type>Template_Assign</Variant_Of_Existing_Type>
 
-		<Text_ID>TEXT_HERO_PRINCESS_LEIA</Text_ID>
-		<Icon_Name>I_BUTTON_PRINCESS_LEIA_ADMIN.tga</Icon_Name>
+		<Text_ID>TEXT_HERO_LEIA</Text_ID>
+		<Icon_Name>I_BUTTON_LEIA_ADMIN.tga</Icon_Name>
 
 		<SFXEvent_Build_Complete>Unit_Select_Leia_Organa</SFXEvent_Build_Complete>
 
